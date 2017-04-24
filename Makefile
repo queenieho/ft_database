@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/04/20 13:24:49 by qho              ###   ########.fr        #
+#    Updated: 2017/04/23 19:50:08 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 # Source and header files, and directory
 INC		=	./inc/
-FILES	=	ft_db	\
-SRC		=	$(addprefix src/, $(addsuffix .c, $(FILES)))
+# FILES	=	ft_db	\
+# SRC		=	$(addprefix src/, $(addsuffix .c, $(FILES)))
+SRC		=	src/ft_db.c
 
 # Object directory and files
 OBJ	=	$(addsuffix .o, $(FILES))
@@ -38,8 +39,8 @@ $(OBJ):	$(SRC)
 	@$(CC) -c $(CFLAGS) $(SRC) -I$(INC)
 	@echo "\033[32mObject files made\033[0m"
 
-# test: $(NAME)
-# 	@$(CC) -Wformat -I$(INC) $(NAME) random.c main.c -o $(EXE)
+test:
+	@$(CC) -I$(INC) $(SRC) -o $(NAME)
 
 norm:
 	@norminette $(SRC) $(INC)

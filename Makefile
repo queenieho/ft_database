@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/04/23 19:50:08 by qho              ###   ########.fr        #
+#    Updated: 2017/04/26 19:11:53 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 # Source and header files, and directory
 INC		=	./inc/
-# FILES	=	ft_db	\
-# SRC		=	$(addprefix src/, $(addsuffix .c, $(FILES)))
-SRC		=	src/ft_db.c
+FILES	=	ft_db ft_fork ft_strsplit	\
+
+SRC		=	$(addprefix src/, $(addsuffix .c, $(FILES)))
+# SRC		=	src/ft_db.c
 
 # Object directory and files
 OBJ	=	$(addsuffix .o, $(FILES))

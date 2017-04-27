@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/04/23 20:49:22 by qho              ###   ########.fr       */
+/*   Updated: 2017/04/26 19:28:43 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,46 +99,103 @@ int		ft_delete_record(int fd, int key)
 	return (ret);
 }
 
-int		main(int ac, char **av)
+int		ft_array_len(char **args)
 {
+	int		len;
+	char	**tmp;
+
+	len = 0;
+	tmp = args;
+	while (*tmp)
+	{
+		tmp++;
+		len++;
+	}
+	return (len);
+}
+
+int		ft_dbms(char *command, char **rec)
+{
+	// printf("FT_DBMS\n");
 	int			fd;
 	t_person	record;
+	int			ac;
 
+	ac = ft_array_len(rec);
+	// printf("command: %s\n", command);
+	// printf("len: %d\n", ac);
 	if (ac > 1)
 	{
 		/* insert data */
-		if (ac > 5 && !strcmp(av[1], "insert"))
+		if (ac >= 5 && !strcmp(command, "insert"))
 		{
+			// printf("insert data\n");
 			fd = ft_open_file("data1");
-			// printf("insert data\n");
-			record.key = atoi(av[2]);
-			strcpy(record.fname, av[3]);
-			// record.fname = strdup(av[3]);
-			// printf("name: %s\n", record.fname);
-			strcpy(record.lname, av[4]);
-			// record.lname = strdup(av[4]);
-			record.age  = atoi(av[5]);
-			// printf("insert data\n");
+			record.key = atoi(rec[1]);
+			strcpy(record.fname, rec[2]);
+			strcpy(record.lname, rec[3]);
+			record.age  = atoi(rec[4]);
 			ft_insert_record(fd, &record);
 		}
 
 		/* delete */
-		else if (ac > 2 && !strcmp(av[1], "delete"))
+		else if (ac >= 2 && !strcmp(command, "delete"))
 		{
+			// printf("deleting data\n");
 			fd = ft_open_file_update("data1");
-			ft_delete_record(fd, atoi(av[2]));
+			ft_delete_record(fd, atoi(rec[1]));
 		}
 		/* print */
-		else if (ac > 2 && !strcmp(av[1], "print"))
+		else if (ac >= 2 && !strcmp(command, "print"))
 		{
+			// printf("printing data\n");
 			fd = ft_open_file("data1");
-			ft_get_record(fd, &record, atoi(av[2]));
+			ft_get_record(fd, &record, atoi(rec[1]));
 			printf("Key: %d\n", record.key);
 			printf("First Name: %s\n", record.fname);
 			printf("Last Name: %s\n", record.lname);
 			printf("Age: %d\n", record.age);
 		}
+		ft_close_file(fd);
 	}
-	ft_close_file(fd);
 	return (0);
 }
+
+// int		main(int ac, char **av)
+// {
+// 	int			fd;
+// 	t_person	record;
+
+// 	if (ac > 1)
+// 	{
+// 		/* insert data */
+// 		if (ac > 5 && !strcmp(av[1], "insert"))
+// 		{
+// 			fd = ft_open_file("data1");
+// 			record.key = atoi(av[2]);
+// 			strcpy(record.fname, av[3]);
+// 			strcpy(record.lname, av[4]);
+// 			record.age  = atoi(av[5]);
+// 			ft_insert_record(fd, &record);
+// 		}
+
+// 		/* delete */
+// 		else if (ac > 2 && !strcmp(av[1], "delete"))
+// 		{
+// 			fd = ft_open_file_update("data1");
+// 			ft_delete_record(fd, atoi(av[2]));
+// 		}
+// 		/* print */
+// 		else if (ac > 2 && !strcmp(av[1], "print"))
+// 		{
+// 			fd = ft_open_file("data1");
+// 			ft_get_record(fd, &record, atoi(av[2]));
+// 			printf("Key: %d\n", record.key);
+// 			printf("First Name: %s\n", record.fname);
+// 			printf("Last Name: %s\n", record.lname);
+// 			printf("Age: %d\n", record.age);
+// 		}
+// 	}
+// 	ft_close_file(fd);
+// 	return (0);
+// }

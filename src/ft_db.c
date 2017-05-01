@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/04/30 22:10:21 by qho              ###   ########.fr       */
+/*   Updated: 2017/04/30 22:34:10 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,17 @@ int		ft_dbms(char *command, char **rec)
 	ac = ft_array_len(rec);
 	// printf("command: %s\n", command);
 	// printf("len: %d\n", ac);
+	if (ac == 1 && !strncmp(command, "-h", 2))
+	{
+		printf("\t-insert key first_name last_name age\n");
+		printf("\t-edit key_to_edit new_first_name new_last_name new_age\n");
+		printf("\t-print key\n");
+		printf("\t-delete key\n");
+	}
 	if (ac > 1)
 	{
 		/* insert data */
-		if (ac >= 5 && !strcmp(command, "insert"))
+		if (ac >= 5 && !strcmp(command, "-insert"))
 		{
 			// printf("insert data\n");
 			fd = ft_open_file("data1");
@@ -140,14 +147,14 @@ int		ft_dbms(char *command, char **rec)
 		}
 
 		/* delete */
-		else if (ac >= 2 && !strcmp(command, "delete"))
+		else if (ac >= 2 && !strcmp(command, "-delete"))
 		{
 			// printf("deleting data\n");
 			fd = ft_open_file_update("data1");
 			ft_delete_record(fd, atoi(rec[1]));
 		}
 		/* print */
-		else if (ac >= 2 && !strcmp(command, "print"))
+		else if (ac >= 2 && !strcmp(command, "-print"))
 		{
 			// printf("printing data\n");
 			fd = ft_open_file("data1");
@@ -158,7 +165,7 @@ int		ft_dbms(char *command, char **rec)
 			printf("Age: %d\n", record.age);
 		}
 		/* update */
-		else if (ac >= 5 && !strcmp(command, "edit"))
+		else if (ac >= 5 && !strcmp(command, "-edit"))
 		{
 			printf("editing data\n");
 			fd = ft_open_file_update("data1");

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/04/26 19:35:00 by qho              ###   ########.fr       */
+/*   Updated: 2017/04/27 15:16:19 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int 	main()
 	line = NULL;
 	while (status)
 	{
-		printf("My_DBMS - ");
+		printf("%s My_DBMS %s- %s", DASH, Y, W);
 		line = ft_readline();
 		av = ft_strsplit(line, ' ');
 		status = ft_db_exe(av);

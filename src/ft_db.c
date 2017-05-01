@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/04/26 19:28:43 by qho              ###   ########.fr       */
+/*   Updated: 2017/04/30 22:10:21 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int		ft_dbms(char *command, char **rec)
 	// printf("FT_DBMS\n");
 	int			fd;
 	t_person	record;
+	t_person	tmp;
 	int			ac;
 
 	ac = ft_array_len(rec);
@@ -155,6 +156,30 @@ int		ft_dbms(char *command, char **rec)
 			printf("First Name: %s\n", record.fname);
 			printf("Last Name: %s\n", record.lname);
 			printf("Age: %d\n", record.age);
+		}
+		/* update */
+		else if (ac >= 5 && !strcmp(command, "edit"))
+		{
+			printf("editing data\n");
+			fd = ft_open_file_update("data1");
+			ft_get_record(fd, &tmp, atoi(rec[1]));
+			// printf("Key: %d\n", record.key);
+			// printf("First Name: %s\n", record.fname);
+			// printf("Last Name: %s\n", record.lname);
+			// printf("Age: %d\n", record.age);
+			record.key = atoi(rec[1]);
+			strcpy(record.fname, rec[2]);
+			strcpy(record.lname, rec[3]);
+			record.age  = atoi(rec[4]);
+			ft_delete_record(fd, atoi(rec[1]));
+			ft_insert_record(fd, &record);
+			// bzero(&record, sizeof(t_person));
+			// ft_get_record(fd, &record, atoi(rec[1]));
+			printf("Record has been updated as follows\n");
+			printf("Key: %d --> %d\n", tmp.key, record.key);
+			printf("First Name: %s --> %s\n", tmp.fname, record.fname);
+			printf("Last Name: %s --> %s\n", tmp.lname, record.lname);
+			printf("Age: %d --> %d\n", tmp.age, record.age);
 		}
 		ft_close_file(fd);
 	}

@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/04/26 19:11:53 by qho              ###   ########.fr        #
+#    Updated: 2017/04/30 22:43:10 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,19 +29,20 @@ OBJ	=	$(addsuffix .o, $(FILES))
 
 .PHONY: clean fclean re norm
 
-all: $(OBJ) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib	$(NAME)
-	@echo "\033[32m$(NAME) made\033[0m"
-
-$(OBJ):	$(SRC)
-	@$(CC) -c $(CFLAGS) $(SRC) -I$(INC)
-	@echo "\033[32mObject files made\033[0m"
-
-test:
+$(NAME): $(SRC)
 	@$(CC) -I$(INC) $(SRC) -o $(NAME)
+# 	@ar rc $(NAME) $(OBJ)
+# 	@ranlib	$(NAME)
+# 	@echo "\033[32m$(NAME) made\033[0m"
+
+# $(OBJ):	$(SRC)
+# 	@$(CC) -c $(CFLAGS) $(SRC) -I$(INC)
+# 	@echo "\033[32mObject files made\033[0m"
+
+# test:
+# 	@$(CC) -I$(INC) $(SRC) -o $(NAME)
 
 norm:
 	@norminette $(SRC) $(INC)

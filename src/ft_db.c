@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/04/30 22:34:10 by qho              ###   ########.fr       */
+/*   Updated: 2017/04/30 22:49:09 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		ft_dbms(char *command, char **rec)
 	ac = ft_array_len(rec);
 	// printf("command: %s\n", command);
 	// printf("len: %d\n", ac);
-	if (ac == 1 && !strncmp(command, "-h", 2))
+	if (ac == 1 && (!strncmp(command, "-h", 2) || !strncmp(command, "help", 4)))
 	{
 		printf("\t-insert key first_name last_name age\n");
 		printf("\t-edit key_to_edit new_first_name new_last_name new_age\n");

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/05/02 17:36:31 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/02 18:04:39 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int ft_dbms(char *command, char **rec, t_table *t)
 
 	ac = ft_array_len(rec);
 	(void)t;
-	if (ac == 1 && !strncmp(command, "--help", 6))
+	if (ac == 1 && !strncmp(command, "help", 4))
 	{
-		printf("PRINT USAGE\n");	// --help
+		printf("PRINT USAGE\n");	// help
 	}
 	else if (ac == 1 && !strncmp(command, "exit", 4))
 	{
@@ -112,15 +112,15 @@ int ft_dbms(char *command, char **rec, t_table *t)
 		printf("save to file\n");
 		ft_save_handler(t);
 	}
-	else if (!strncmp(command, "--insert", 8))
+	else if (!strncmp(command, "insert", 6))
 	{
 		ft_insert_handler(rec, t, ac);
 	}
-	else if (!strncmp(command, "--update", 8))
+	else if (!strncmp(command, "update", 6))
 		ft_update_handler(rec, t);
-	else if (!strncmp(command, "--print", 7))
+	else if (!strncmp(command, "print", 5))
 		ft_print_handler(rec, t);
-	else if (!strncmp(command, "--delete", 8))
+	else if (!strncmp(command, "delete", 6))
 		ft_delete_handler(rec, t);
 	else
 		printf("Invalid command. PRINT USAGE\n");

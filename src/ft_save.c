@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/02 17:50:09 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/02 18:29:16 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,23 @@ void	ft_close_file(int fd)
 	close(fd);
 }
 
-void	ft_insert_col_header(char *header, int len)
+char	*ft_gen_header(t_column col, int *len)
 {
-	printf("inserting %s of len %d\n", header, len);
+	char	*header;
+	
+
+	return (header);
+}
+
+void	ft_insert_col_header(int fd, t_column col)
+{
+	char	*header;
+	int		len;
+	printf("inserting %s of len %d, of type %c\n", col.name, col.name_len, col.type);
+	header = ft_gen_header(col, &len);
+	// write(fd, header, len);
+	// write(fd, ",", 1);
+	printf("success!!!\n");
 }
 
 void	ft_save_handler(t_table *t)
@@ -56,9 +70,10 @@ void	ft_save_handler(t_table *t)
 	{
 		// printf("%d\n", t->col_id[c_idx]);
 		printf("Need to insert %s of len %d\n", t->columns[c_idx].name, t->columns[c_idx].name_len);
-		ft_insert_col_header(t->columns[c_idx].name, t->columns[c_idx].name_len);
+		ft_insert_col_header(fd, t->columns[c_idx]);
 		c_idx++;
 	}
+	write(fd, "\n", 1);
 	if (t->row_id[r_idx])
 		printf("need to insert rows\n");
 

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/02 17:44:21 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/02 18:19:26 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_column	// holds all the content in one column
 {
 	char		type;	// content type: s.trings, i.nteger, b.oolean, d.ate
 	char		*name;	// column name
-	int			name_len;
+	int			name_len; // len of name
 	t_content	*content_array; // pointer to array of structs containing data
 }				t_column;
 

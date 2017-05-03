@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/04/30 22:43:10 by qho              ###   ########.fr        #
+#    Updated: 2017/05/02 15:38:22 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,13 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 # Source and header files, and directory
 INC		=	./inc/
-FILES	=	ft_db ft_fork ft_strsplit	\
+FILES	=	ft_db ft_fork ft_strsplit ft_insert ft_update ft_delete ft_print	\
+			ft_save
+
+T_FILES	=	ft_fork ft_strsplit	ft_test	\
 
 SRC		=	$(addprefix src/, $(addsuffix .c, $(FILES)))
+T_SRC		=	$(addprefix src/, $(addsuffix .c, $(T_FILES)))
 # SRC		=	src/ft_db.c
 
 # Object directory and files
@@ -41,8 +45,8 @@ $(NAME): $(SRC)
 # 	@$(CC) -c $(CFLAGS) $(SRC) -I$(INC)
 # 	@echo "\033[32mObject files made\033[0m"
 
-# test:
-# 	@$(CC) -I$(INC) $(SRC) -o $(NAME)
+test:
+	@$(CC) -I$(INC) $(T_SRC) -o $(NAME)
 
 norm:
 	@norminette $(SRC) $(INC)

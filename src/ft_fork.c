@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/04/27 15:16:19 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/02 17:36:53 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,106 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/*
-** FT_STRSPLIT
-*/
-
-// int		ft_wrdcnt(char const *s, char c)
-// {
-// 	int	cnt;
-// 	int	i;
-
-// 	cnt = 0;
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if ((i == 0 && s[i] != c) || (s[i] != c && s[i - 1] == c))
-// 			cnt++;
-// 		i++;
-// 	}
-// 	return (cnt);
-// }
-
-
-// static int	ft_location(int loc, char const *s, char c)
-// {
-// 	int	i;
-
-// 	i = loc;
-// 	while (s[i])
-// 	{
-// 		if (s[i] != c)
-// 		{
-// 			loc = i;
-// 			break ;
-// 		}
-// 		i++;
-// 	}
-// 	return (loc);
-// }
-
-// static int	ft_wordlen(int loc, char const *s, char c)
-// {
-// 	int len;
-
-// 	len = 0;
-// 	while (s[loc])
-// 	{
-// 		if (s[loc] == c)
-// 			break ;
-// 		len++;
-// 		loc++;
-// 	}
-// 	return (len);
-// }
-
-// static void	ft_getwords(char const *s, char **words, char c)
-// {
-// 	int location;
-// 	int wlen;
-// 	int j;
-// 	int l;
-
-// 	location = 0;
-// 	j = 0;
-// 	while (j < ft_wrdcnt(s, c))
-// 	{
-// 		l = 0;
-// 		location = ft_location(location, s, c);
-// 		wlen = ft_wordlen(location, s, c);
-// 		words[j] = (char *)malloc(sizeof(char) * (wlen + 1));
-// 		while (l < wlen)
-// 			words[j][l++] = s[location++];
-// 		words[j][l] = '\0';
-// 		j++;
-// 	}
-// 	words[j] = NULL;
-// }
-
-// char		**ft_strsplit(char const *s, char c)
-// {
-// 	char	**words;
-
-// 	words = NULL;
-// 	if (s && c)
-// 		words = (char **)malloc(sizeof(char *) * (ft_wrdcnt(s, c) + 1));
-// 	if (words)
-// 		ft_getwords(s, words, c);
-// 	return (words);
-// }
-
-
-/*
-** FT_FORK
-*/
-
-// int		ft_dbms(char *command, char **record)
-// {
-	
-// 	return (1);
-// }
-
-int		ft_db_exe(char **av)
+int		ft_db_exe(char **av, t_table *table)
 {
 	pid_t	pid; 
 	pid_t	wpid;
@@ -126,7 +27,7 @@ int		ft_db_exe(char **av)
 	else if (pid == 0) // Child process
 	{
 		// printf("Child process\n");
-		if (ft_dbms(av[0], av) == -1) 
+		if (ft_dbms(av[0], av, table) == -1) 
 			perror("lsh");
 		exit(EXIT_FAILURE);
 	}
@@ -151,20 +52,65 @@ char	*ft_readline()
 	return (line);
 }
 
+void	ft_init_table(t_table *t)
+{
+	bzero(t->col_id, sizeof(int) * COL_SIZE);
+	bzero(t->row_id, sizeof(int) * ROW_SIZE);
+	t->columns = (t_column *)malloc(sizeof(t_column) * COL_SIZE);
+}
+
 int 	main()
 {
 	char	*line;
 	char	**av;
-	int		status;
+	// int		status;
+	t_table	table;
 
-	status = 1;
+	// status = 1;
 	line = NULL;
-	while (status)
+
+	// g_col_id = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+	// g_row_id = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+	// table = mmap(NULL, sizeof(t_table), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
+	// *g_col_id = 0;
+	// *g_row_id = 0;
+	// Need to init table
+	g_col_id = 0;
+	g_row_id = 0;
+	ft_init_table(&table);
+
+	// IF WE ALREADY HAVE A DB FILE, LOAD DB FILE INTO TABLE
+
+	printf("%s***************************************%s\n", R, W);
+	printf("%s*  Welcome to My_DBMS, our 42 ft_db!  *%s\n", R, W);
+	printf("%s***************************************%s\n", R, W);
+	printf("Here's some quick instructions: \n");
+	printf(" --insert c column_name\n"); 	// insert column to table
+	printf(" --insert r\n");	// insert record
+	printf(" --print all\n"); // print full table
+	printf(" --print r search_col search_param\n");	// print specific record
+	printf(" --edit r \n");	// update record HOW TO DO THIS?
+	printf(" --delete r search_col search_param\n");	// delete record NOT SURE
+	printf(" --delete c column_name??\n");	// delete column? 
+	printf("\n --help for usage\n\n");
+	// while (status)
+	// {
+	// 	printf("%s My_DBMS %s- %s", DASH, Y, W);
+	// 	line = ft_readline();
+	// 	av = ft_strsplit(line, ' ');
+	// 	status = ft_db_exe(av, table);
+	// 	// printf("%d\n", *g_col_id);
+	// 	free(line);
+	// 	free(av);		
+	// }
+	while (1)
 	{
 		printf("%s My_DBMS %s- %s", DASH, Y, W);
 		line = ft_readline();
 		av = ft_strsplit(line, ' ');
-		status = ft_db_exe(av);
+		// ft_db_exe(av, table);
+		ft_dbms(av[0], av, &table);
+		// printf("%d\n", *g_col_id);
 		free(line);
 		free(av);		
 	}

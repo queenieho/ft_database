@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 00:23:30 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 13:38:38 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int 	main()
 	printf(" --delete r search_col search_param\n");	// delete record NOT SURE
 	printf(" --delete c column_name??\n");	// delete column? 
 	printf("\n --help for usage\n\n");
+
+	ft_load_db(&table);
 	// while (status)
 	// {
 	// 	printf("%s My_DBMS %s- %s", DASH, Y, W);

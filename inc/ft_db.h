@@ -6,13 +6,14 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 09:47:17 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 13:19:42 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DB_H
 # define FT_DB_H
 
+# include "../libft/libft.h"
 # include <stdio.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -128,6 +129,11 @@ char	ft_get_datatype();
 int		ft_row_id_gen();
 void	ft_insert_row(t_table *t);
 
+/*
+** FT_LOAD_DB_C
+*/
+int		ft_open_file_load(char *filename);
+void	ft_load_db(t_table *t);
 
 /*
 ** FT_PRINT_C
@@ -147,7 +153,7 @@ void	ft_save_handler(t_table *t);
 /*
 ** FT_STRSPLIT_C
 */
-char		**ft_strsplit(char const *s, char c);
+// char		**ft_strsplit(char const *s, char c);
 
 /*
 ** FT_UPDATE_C
@@ -157,8 +163,8 @@ void	ft_update_handler(char **rec, t_table *t);
 /*
 ** FT_UTILS_C
 */
-unsigned int	ft_absolute_val(int n);
-int				ft_numlen(int n);
-char			*ft_itoa(int n);
+// unsigned int	ft_absolute_val(int n);
+// int				ft_numlen(int n);
+// char			*ft_itoa(int n);
 
 #endif

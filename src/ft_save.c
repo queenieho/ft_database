@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 10:38:39 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 13:06:31 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ char	*ft_gen_row(t_column *col, int r_idx)
 		// printf("extended row: %s\n", row);
 		c_idx++;
 	}
-	// printf("final row: %s\n", row);
 	return (row);
 }
 
@@ -148,17 +147,9 @@ void	ft_save_rows(int fd, t_table *t)
 	{
 		row_string = ft_gen_row(t->columns, r_idx);
 		len = strlen(row_string);
-		write(1, row_string, len);
+		// write(1, row_string, len);
 		write(fd, row_string, len);
-		// while (c_idx < COL_SIZE && t->col_id[c_idx])
-		// {
-		// 	// ft_save_row_data(t->columns[c_idx]);
-
-		// 	write(1, t->columns[c_idx].content_array[r_idx].data, len);
-		// 	write(fd, t->columns[c_idx].content_array[r_idx].data, len);
-		// 	c_idx++;
-		// }
-		write(1, "\n", 1);
+		// write(1, "\n", 1);
 		write(fd, "\n", 1);
 		r_idx++;
 	}

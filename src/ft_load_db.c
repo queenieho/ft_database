@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 14:02:21 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 14:32:40 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,34 @@ void	ft_get_columns(char *line, t_table *t)
 		ft_load_column(*headers, t);
 		headers++;
 	}
-	// printf("%d columns in file\n", c_num);
-	// while (c_num)
-	// {
-	// 	printf("%s\n", *headers);
-	// 	c_num--;
-	// 	headers++;
-	// }
+}
+
+void	ft_load_row_data(t_column *col, int r_idx, char *record)
+{
+	t_content	*content;
+
+	content = &col->content_array[r_idx];
+	content->data = strdup(record);
+	content->len = strlen(content->data);
+	printf("You have entered %s of len %d\n", content->data, content->len);
+}
+
+void	ft_load_row(char *line, t_table *t)
+{
+	char	**records;
+	int		r_idx;
+	int		c_idx;
+
+	r_idx = ft_empty_row(t);
+	t->row_id[r_idx] = ft_row_id_gen();
+	printf("First empty row is at index %d and has id %d\n", r_idx, t->row_id[r_idx]);
+	records = ft_strsplit(line, ',');
+	while (c_idx < COL_SIZE && t->col_id[c_idx])
+	{
+		ft_load_row_data(&t->columns[c_idx], r_idx, records[c_idx]);
+		c_idx++;
+	}
+
 }
 
 void	ft_load_db(t_table *t)
@@ -72,6 +93,12 @@ void	ft_load_db(t_table *t)
 		return ;
 	}
 	ft_get_columns(line, t);
+	ft_strdel(&line);
+	while (get_next_line(fd, &line))
+	{
+		ft_load_row(line, t);
+		ft_strdel(&line);
+	}
 	// printf("%s\n", line);
 	close(fd);
 	// printf("%d\n", fd);

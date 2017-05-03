@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 13:19:42 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 14:28:25 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ char	ft_get_datatype();
 ** FT_INSERT_ROW_C
 */
 int		ft_row_id_gen();
+int		ft_empty_row(t_table *t);
+void	ft_insert_row_data(t_column *col, int r_idx);
 void	ft_insert_row(t_table *t);
 
 /*

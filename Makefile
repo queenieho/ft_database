@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/02 15:38:22 by qho              ###   ########.fr        #
+#    Updated: 2017/05/02 23:05:02 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 # Source and header files, and directory
 INC		=	./inc/
 FILES	=	ft_db ft_fork ft_strsplit ft_insert ft_update ft_delete ft_print	\
-			ft_save
+			ft_save ft_utils ft_insert_row ft_insert_col	\
 
 T_FILES	=	ft_fork ft_strsplit	ft_test	\
 

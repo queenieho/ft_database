@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/05/02 18:04:39 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/02 23:02:58 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@
 // 	return (ret);
 // }
 
+
+
 int		ft_array_len(char **args)
 {
 	int		len;
@@ -114,7 +116,7 @@ int ft_dbms(char *command, char **rec, t_table *t)
 	}
 	else if (!strncmp(command, "insert", 6))
 	{
-		ft_insert_handler(rec, t, ac);
+		ft_insert_handler(rec, t);
 	}
 	else if (!strncmp(command, "update", 6))
 		ft_update_handler(rec, t);

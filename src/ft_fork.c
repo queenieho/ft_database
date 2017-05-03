@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/05/02 17:36:53 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 00:23:30 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,17 @@ char	*ft_readline()
 
 void	ft_init_table(t_table *t)
 {
+	int	idx;
+
+	idx = 0;
 	bzero(t->col_id, sizeof(int) * COL_SIZE);
 	bzero(t->row_id, sizeof(int) * ROW_SIZE);
 	t->columns = (t_column *)malloc(sizeof(t_column) * COL_SIZE);
+	while (idx < COL_SIZE)
+	{
+		t->columns[idx].content_array = (t_content *)malloc(sizeof(t_content) * ROW_SIZE);
+		idx++;
+	}
 }
 
 int 	main()

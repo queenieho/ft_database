@@ -39,6 +39,7 @@ my_database
 json-c/**
 Zold/**
 
-libft/build1/**
-libft/build2/**
-libft/build3/**
+libft/build1/*.o
+libft/build2/*.o
+libft/build3/*.o
+# !libft/.gitkeep

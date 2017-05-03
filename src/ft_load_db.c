@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 14:32:40 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 15:58:40 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_load_row(char *line, t_table *t)
 	int		r_idx;
 	int		c_idx;
 
+	c_idx = 0;
 	r_idx = ft_empty_row(t);
 	t->row_id[r_idx] = ft_row_id_gen();
 	printf("First empty row is at index %d and has id %d\n", r_idx, t->row_id[r_idx]);
@@ -96,6 +97,7 @@ void	ft_load_db(t_table *t)
 	ft_strdel(&line);
 	while (get_next_line(fd, &line))
 	{
+		printf("about to load %s\n", line);
 		ft_load_row(line, t);
 		ft_strdel(&line);
 	}

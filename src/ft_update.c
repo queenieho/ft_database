@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/02 23:08:14 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 15:06:32 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_update_handler(char **rec, t_table *t)
 {
 	printf("update handler\n");
-	// --edit r
+	// update r
 	if (!rec[1])
 		printf("print DELETE USAGE\n");
 	if (rec[1][0] == 'r')

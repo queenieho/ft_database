@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 14:30:57 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 16:00:03 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,19 @@ void	ft_save_col_header(int fd, t_column col)
 
 char	*ft_init_row(t_content record)
 {
+	// printf("init row\n");
 	char	*row;
 
 	row = (char *)malloc(sizeof(char) * (record.len + 2));
 	row = strcpy(row, record.data);
 	row = strcat(row, ",");
+	// printf("done init %s\n", row);
 	return(row);
 }
 
 char	*ft_append_to_row(char *str, t_content record)
 {
+	// printf("append\n");
 	char	*row;
 
 	row = (char *)malloc(sizeof(char) * (strlen(str) + record.len + 2));
@@ -113,11 +116,13 @@ char	*ft_append_to_row(char *str, t_content record)
 	row = strcat(row, record.data);
 	row = strcat(row, ",");
 	free(str);
+	// printf("done append %s\n", row);
 	return(row);
 }
 
 char	*ft_gen_row(t_column *col, int r_idx)
 {
+	// printf("generating row ID %d\n", r_idx);
 	char	*row;
 	int		c_idx;
 
@@ -130,6 +135,7 @@ char	*ft_gen_row(t_column *col, int r_idx)
 		// printf("extended row: %s\n", row);
 		c_idx++;
 	}
+	// printf("row generated\n");
 	return (row);
 }
 

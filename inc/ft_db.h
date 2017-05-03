@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 14:28:25 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 15:41:47 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,12 @@ void	ft_close_file(int fd);
 void	ft_insert_type(char **header, char type);
 char	*ft_gen_header(t_column col, int *len);
 void	ft_save_col_header(int fd, t_column col);
+char	*ft_init_row(t_content record);
+char	*ft_append_to_row(char *str, t_content record);
+char	*ft_gen_row(t_column *col, int r_idx);
+void	ft_save_rows(int fd, t_table *t);
 void	ft_save_handler(t_table *t);
+
 
 /*
 ** FT_STRSPLIT_C

@@ -44,3 +44,6 @@ libft/build2/*.o
 libft/build3/*.o
 # !libft/.gitkeep
 table
+
+#nfs
+.nfs*

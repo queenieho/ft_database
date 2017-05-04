@@ -12,10 +12,11 @@
 
 #include "ft_db.h"
 
-static	int		ft_max_len(t_table *t)
+int		ft_max_len(t_table *t)
 {
 	int		row_num;
 	int		col_num;
+	int		max;
 	t_content	*data;
 	t_column	*col;
 
@@ -27,9 +28,49 @@ static	int		ft_max_len(t_table *t)
 		{
 			col = &t->columns[col_num];
 			data = &col->content_array[row_num];
-			printf("%ds", data->data);
+			if (data->len >= max)
+				max = data->len;
 			col_num++;
 		}
+		row_num++;
+	}
+	return (max);
+}
+
+// char	*ft_get_info(char *ask)
+// {
+// 	char	*ans;
+
+// 	printf("%s\n", ask);
+// 	ans = strtok(ft_readline(), "\n");
+// 	return (ans);
+// }
+
+static	void	ft_print_dash(t_table *t)
+{	
+	int		row_num;
+	int		col_num;
+	t_content	*data;
+	t_column	*col;
+	int			max;
+	char		*str;
+
+	max = ft_max_len(t);
+	row_num = 0;
+	while (row_num < g_row_id)
+	{
+		col_num = 0;
+		while (col_num < g_col_id)
+		{
+			col = &t->columns[col_num];
+			data = &col->content_array[row_num];
+			str = ft_strnew(max);
+			memset(str, '-', max);
+			printf("%s", str);
+			printf("%s", data->data);
+			col_num++;
+		}
+		printf("\n");
 		row_num++;
 	}
 }
@@ -40,6 +81,7 @@ void			ft_print_handler(char **rec, t_table *t)
 	int		col_num;
 	t_content	*data;
 	t_column	*col;
+	int			max;
 
 	// t->col_id[]
 	// t->row_id[]
@@ -53,6 +95,8 @@ void			ft_print_handler(char **rec, t_table *t)
 	// --print all
 	// --print r search_col search_param
 	// --print sorted??
+	
+
 	if (!rec[1])
 		printf("print PRINT USAGE\n");
 
@@ -60,21 +104,7 @@ void			ft_print_handler(char **rec, t_table *t)
 		printf("print specific record\n");
 	else if (rec[1][0] == 'a')
 	{
-		row_num = 0;
-		while (row_num < g_row_id)
-		{
-			col_num = 0;
-			while (col_num < g_col_id)
-			{
-				col = &t->columns[col_num];
-				data = &col->content_array[row_num];
-				printf("%ds", data->data);
-				col_num++;
-			}
-			printf("\n");
-			row_num++;
-		}
-
+		ft_print_dash(t);
 	}
 	else if (rec[1][0] == 's')
 		printf("print sorted?\n");

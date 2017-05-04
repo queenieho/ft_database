@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 10:53:17 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 12:05:33 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,6 @@ void	ft_get_columns(char *line, t_table *t)
 		headers++;
 	}
 }
-
-// void	ft_load_row_data(t_column *col, int r_idx, char *record, int *max_size)
-// {
-// 	t_content	*content;
-
-// 	content = &col->content_array[r_idx];
-// 	content->data = strdup(record);
-// 	content->len = strlen(content->data);
-// 	if (content->len > col->max_len)
-// 	{
-// 		max_size = max_size - col->max_len + content->len;
-// 		// printf("row len is larger than header len, will replace\n");
-// 		col->max_len = content->len;
-// 		// printf("\ncol has a max len of %d\n\n", col->max_len);
-// 		// printf("max_size %d\n", *max_size);
-// 	}
-// 	// printf("You have entered %s of len %d\n", content->data, content->len);
-// }
 
 void	ft_load_row_data(t_table *t, int r_idx, char *record, int c_idx)
 {
@@ -134,7 +116,7 @@ void	ft_load_db(t_table *t)
 		ft_load_row(line, t);
 		ft_strdel(&line);
 	}
-	t->max_size = t->max_size + ((ft_empty_col(t) + 1) * 3) + 2;
+	t->max_size = t->max_size + ((ft_empty_col(t) + 1) * 3) + 5;
 	// printf("whole max_size %d\n", t->max_size);
 	// printf("%s\n", line);
 	close(fd);

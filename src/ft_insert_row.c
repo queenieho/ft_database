@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 22:59:55 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 09:35:29 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 12:10:54 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ void	ft_insert_row_data(t_column *col, int r_idx, int *max_size)
 	content = &col->content_array[r_idx];
 	content->data = ft_get_info(col->name);
 	content->len = strlen(content->data);
-	if (content->len > col->max_len)
-	{
-		max_size = max_size - col->max_len + content->len;
-		// printf("row len is larger than header len, will replace\n");
-		col->max_len = content->len;
-	}
+	ft_update_maxlen(col, content->len, max_size);
 	// printf("\ncol has a max len of %d\n\n", col->max_len);
 	// printf("You have entered %s of len %d\n", content->data, content->len);
 }

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 10:52:45 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 12:07:44 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ void	ft_load_db(t_table *t);
 ** FT_PRINT_C
 */
 static	int		ft_max_len(t_table *t);
+void	ft_print_data(int max_len, char *str, int even_odd);
+void	ft_print_line(t_table *t);
+void	ft_print_header(t_table *t);
+void	ft_print_table(t_table *t);
 void	ft_print_handler(char **rec, t_table *t);
 
 /*

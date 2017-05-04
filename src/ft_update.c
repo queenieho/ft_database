@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 11:10:05 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 11:45:07 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	ft_update_maxlen(t_column *col, int new_len, int *max_size)
 		*max_size = *max_size - col->max_len + new_len;
 		col->max_len = new_len;
 	}
-	// else
-	// 	printf("not replacing\n");
 }
 
 void	ft_update_record(t_table *t, int r_idx)

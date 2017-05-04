@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:44 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 16:09:17 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 16:25:45 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_delete_row(t_table *t)
 		printf("keep\n");
 		return ;
 	}
-	
+	t->row_id[r_idx] = -1;
 }
 
 void	ft_delete_handler(char **rec, t_table *t)

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 16:00:03 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 16:34:28 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,12 +151,15 @@ void	ft_save_rows(int fd, t_table *t)
 	len = 0;
 	while (r_idx < ROW_SIZE && t->row_id[r_idx])
 	{
-		row_string = ft_gen_row(t->columns, r_idx);
-		len = strlen(row_string);
-		// write(1, row_string, len);
-		write(fd, row_string, len);
-		// write(1, "\n", 1);
-		write(fd, "\n", 1);
+		if (t->row_id[r_idx] > 0)
+		{
+			row_string = ft_gen_row(t->columns, r_idx);
+			len = strlen(row_string);
+			// write(1, row_string, len);
+			write(fd, row_string, len);
+			// write(1, "\n", 1);
+			write(fd, "\n", 1);
+		}
 		r_idx++;
 	}
 }

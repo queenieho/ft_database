@@ -6,13 +6,13 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:44 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:28:14 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 17:48:54 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-int	ft_find_row(int r_id, t_table *t)
+int		ft_find_row(int r_id, t_table *t)
 {
 	int		r_idx;
 

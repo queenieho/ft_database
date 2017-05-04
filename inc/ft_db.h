@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 15:41:47 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 17:52:39 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int		ft_dbms(char *command, char **rec, t_table *t);
 /*
 ** FT_DELETE_C
 */
+int		ft_find_row(int r_id, t_table *t);
+void	ft_delete_row(t_table *t);
 void	ft_delete_handler(char **rec, t_table *t);
 
 /*
@@ -134,12 +136,16 @@ void	ft_insert_row(t_table *t);
 /*
 ** FT_LOAD_DB_C
 */
-int		ft_open_file_load(char *filename);
+void	ft_load_column(char	*header, t_table *t);
+void	ft_get_columns(char *line, t_table *t);
+void	ft_load_row_data(t_column *col, int r_idx, char *record);
+void	ft_load_row(char *line, t_table *t);
 void	ft_load_db(t_table *t);
 
 /*
 ** FT_PRINT_C
 */
+static	int		ft_max_len(t_table *t)
 void	ft_print_handler(char **rec, t_table *t);
 
 /*
@@ -165,6 +171,7 @@ void	ft_save_handler(t_table *t);
 /*
 ** FT_UPDATE_C
 */
+void	ft_update_row(t_table *t);
 void	ft_update_handler(char **rec, t_table *t);
 
 /*

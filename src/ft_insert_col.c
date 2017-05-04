@@ -44,6 +44,8 @@ void	ft_insert_column(t_table *t, char type, char *name)
 	col->name = name;
 	col->name_len = strlen(col->name);
 	col->max_len = col->name_len;
+	t->max_size += col->max_len;
+	col->even_odd = col->max_len % 2 == 1 ? 1 : 0;
 	printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
 	printf("\ncol has a max len of %d\n\n", col->max_len);
 	printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);

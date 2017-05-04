@@ -66,6 +66,7 @@ typedef struct s_column	// holds all the content in one column
 	char		type;	// content type: s.trings, i.nteger, b.oolean, d.ate
 	char		*name;	// column name
 	int			name_len; // len of name
+	int			even_odd;
 	int			max_len;
 	t_content	*content_array; // pointer to array of structs containing data
 }				t_column;
@@ -74,6 +75,7 @@ typedef struct	s_table
 {
 	int			col_id[COL_SIZE];
 	int			row_id[ROW_SIZE];
+	int			max_size;
 	t_column	*columns;	// pointers to each column
 }				t_table;
 
@@ -131,7 +133,7 @@ char	ft_get_datatype();
 */
 int		ft_row_id_gen();
 int		ft_empty_row(t_table *t);
-void	ft_insert_row_data(t_column *col, int r_idx);
+void	ft_insert_row_data(t_column *col, int r_idx, int *max_size);
 void	ft_insert_row(t_table *t);
 
 /*
@@ -139,7 +141,7 @@ void	ft_insert_row(t_table *t);
 */
 void	ft_load_column(char	*header, t_table *t);
 void	ft_get_columns(char *line, t_table *t);
-void	ft_load_row_data(t_column *col, int r_idx, char *record);
+void	ft_load_row_data(t_column *col, int r_idx, char *record, int *max_size);
 void	ft_load_row(char *line, t_table *t);
 void	ft_load_db(t_table *t);
 

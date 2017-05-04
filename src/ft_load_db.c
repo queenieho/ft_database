@@ -31,6 +31,8 @@ void	ft_load_column(char	*header, t_table *t)
 	col->name = strdup(info[1]);
 	col->name_len = strlen(col->name);
 	col->max_len = col->name_len;
+	t->max_size += col->max_len;
+	col->even_odd = col->max_len % 2 == 1 ? 1 : 0;
 	printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
 	printf("\ncol has a max len of %d\n\n", col->max_len);
 	printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);
@@ -51,7 +53,7 @@ void	ft_get_columns(char *line, t_table *t)
 	}
 }
 
-void	ft_load_row_data(t_column *col, int r_idx, char *record)
+void	ft_load_row_data(t_column *col, int r_idx, char *record, int *max_size)
 {
 	t_content	*content;
 
@@ -60,9 +62,11 @@ void	ft_load_row_data(t_column *col, int r_idx, char *record)
 	content->len = strlen(content->data);
 	if (content->len > col->max_len)
 	{
+		max_size = max_size - col->max_len + content->len;
 		printf("row len is larger than header len, will replace\n");
 		col->max_len = content->len;
 		printf("\ncol has a max len of %d\n\n", col->max_len);
+
 	}
 	printf("You have entered %s of len %d\n", content->data, content->len);
 }
@@ -80,7 +84,7 @@ void	ft_load_row(char *line, t_table *t)
 	records = ft_strsplit(line, ',');
 	while (c_idx < COL_SIZE && t->col_id[c_idx])
 	{
-		ft_load_row_data(&t->columns[c_idx], r_idx, records[c_idx]);
+		ft_load_row_data(&t->columns[c_idx], r_idx, records[c_idx], &t->max_size);
 		c_idx++;
 	}
 
@@ -101,6 +105,7 @@ void	ft_load_db(t_table *t)
 		printf("no header\n");
 		return ;
 	}
+	t->max_size = 0;
 	ft_get_columns(line, t);
 	ft_strdel(&line);
 	while (get_next_line(fd, &line))
@@ -109,6 +114,7 @@ void	ft_load_db(t_table *t)
 		ft_load_row(line, t);
 		ft_strdel(&line);
 	}
+	t->max_size = t->max_size + ((ft_empty_col(t) + 1) * 3) + 2;
 	// printf("%s\n", line);
 	close(fd);
 	// printf("%d\n", fd);

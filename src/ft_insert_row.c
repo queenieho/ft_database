@@ -29,7 +29,7 @@ int		ft_empty_row(t_table *t)
 	return(idx);
 }
 
-void	ft_insert_row_data(t_column *col, int r_idx)
+void	ft_insert_row_data(t_column *col, int r_idx, int *max_size)
 {
 	t_content	*content;
 
@@ -38,6 +38,7 @@ void	ft_insert_row_data(t_column *col, int r_idx)
 	content->len = strlen(content->data);
 	if (content->len > col->max_len)
 	{
+		max_size = max_size - col->max_len + content->len;
 		printf("row len is larger than header len, will replace\n");
 		col->max_len = content->len;
 	}
@@ -60,7 +61,7 @@ void	ft_insert_row(t_table *t)
 		printf("First empty row is at index %d and has id %d\n", r_idx, t->row_id[r_idx]);
 		while (c_idx < COL_SIZE && t->col_id[c_idx])
 		{
-			ft_insert_row_data(&t->columns[c_idx], r_idx);
+			ft_insert_row_data(&t->columns[c_idx], r_idx, &t->max_size);
 			c_idx++;
 		}
 	}

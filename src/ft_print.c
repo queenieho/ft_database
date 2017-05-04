@@ -45,29 +45,83 @@
 // 	ans = strtok(ft_readline(), "\n");
 // 	return (ans);
 // }
+		// str = ft_strnew(col->max_len);
+		// memset(str, c, col->max_len);
+		// printf("%s", str);
+		// ft_strdel(&str);
+static	void	ft_print_data(int max_len, char *str, int even_odd)
+{
+	int		len;
 
-static	void	ft_print_dash(t_table *t, char *str, char c)
-{	
-	int		row_num;
-	int		col_num;
+	len = (int)ft_strlen(str);
+	max_len += 2;
+	if (even_odd)
+		printf("%*s%*s", max_len/2 + len/2 + 1, str, max_len/2 - len/2 + 1, "");
+	else
+		printf("%*s%*s", max_len/2 + len/2, str, max_len/2 - len/2, "");
+}
+
+static	void	ft_print_line(t_table *t)
+{
+	char	*str;
+
+	str = ft_strnew((int)t->max_size);
+	memset(str, '-', (int)t->max_size - 1);
+	str[0] = '|';
+	str[(int)t->max_size - 1] = '|';
+	printf("%s", str);
+	ft_strdel(&str);
+	printf("\n");
+}
+
+static	void	ft_header(t_table *t)
+{
 	t_content	*data;
 	t_column	*col;
+	int			col_num;
+	char		*str;
+	int			len;
 
+	ft_print_line(t);
+	col_num = 0;
+	while (col_num < g_col_id)
+	{
+		printf("|");
+		col = &t->columns[col_num];
+		str = col->name;
+		if (str)
+			ft_print_data((int)col->max_len, str, col->even_odd);
+		col_num++;
+	}
+	printf("|\n");
+	ft_print_line(t);
+}
+
+static	void	ft_print_it(t_table *t)
+{	
+	t_content	*data;
+	t_column	*col;
+	int			row_num;
+	int			col_num;
+	int			len;
+	char		*str;
+
+	ft_header(t);
 	row_num = 0;
 	while (row_num < g_row_id)
 	{
 		col_num = 0;
 		while (col_num < g_col_id)
 		{
+			printf("|");
 			col = &t->columns[col_num];
 			data = &col->content_array[row_num];
-			str = ft_strnew(col->max_len);
-			memset(str, c, col->max_len);
-			printf("%s", str);
-			ft_strdel(&str);
+			str = data->data;
+			if (str)
+				ft_print_data((int)col->max_len, str, col->even_odd);
 			col_num++;
 		}
-		printf("\n");
+		printf("|\n");
 		row_num++;
 	}
 }
@@ -101,7 +155,7 @@ void			ft_print_handler(char **rec, t_table *t)
 		printf("print specific record\n");
 	else if (rec[1][0] == 'a')
 	{
-		ft_print_dash(t, NULL, '-');
+		ft_print_it(t);
 	}
 	else if (rec[1][0] == 's')
 		printf("print sorted?\n");

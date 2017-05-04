@@ -12,30 +12,30 @@
 
 #include "ft_db.h"
 
-int		ft_max_len(t_table *t)
-{
-	int		row_num;
-	int		col_num;
-	int		max;
-	t_content	*data;
-	t_column	*col;
+// int		ft_max_len(t_table *t)
+// {
+// 	int		row_num;
+// 	int		col_num;
+// 	int		max;
+// 	t_content	*data;
+// 	t_column	*col;
 
-	row_num = 0;
-	while (row_num < g_row_id)
-	{
-		col_num = 0;
-		while (col_num < g_col_id)
-		{
-			col = &t->columns[col_num];
-			data = &col->content_array[row_num];
-			if (data->len >= max)
-				max = data->len;
-			col_num++;
-		}
-		row_num++;
-	}
-	return (max);
-}
+// 	row_num = 0;
+// 	while (row_num < g_row_id)
+// 	{
+// 		col_num = 0;
+// 		while (col_num < g_col_id)
+// 		{
+// 			col = &t->columns[col_num];
+// 			data = &col->content_array[row_num];
+// 			if (data->len >= max)
+// 				max = data->len;
+// 			col_num++;
+// 		}
+// 		row_num++;
+// 	}
+// 	return (max);
+// }
 
 // char	*ft_get_info(char *ask)
 // {
@@ -46,16 +46,13 @@ int		ft_max_len(t_table *t)
 // 	return (ans);
 // }
 
-static	void	ft_print_dash(t_table *t)
+static	void	ft_print_dash(t_table *t, char *str, char c)
 {	
 	int		row_num;
 	int		col_num;
 	t_content	*data;
 	t_column	*col;
-	int			max;
-	char		*str;
 
-	max = ft_max_len(t);
 	row_num = 0;
 	while (row_num < g_row_id)
 	{
@@ -64,10 +61,10 @@ static	void	ft_print_dash(t_table *t)
 		{
 			col = &t->columns[col_num];
 			data = &col->content_array[row_num];
-			str = ft_strnew(max);
-			memset(str, '-', max);
+			str = ft_strnew(col->max_len);
+			memset(str, c, col->max_len);
 			printf("%s", str);
-			printf("%s", data->data);
+			ft_strdel(&str);
 			col_num++;
 		}
 		printf("\n");
@@ -104,7 +101,7 @@ void			ft_print_handler(char **rec, t_table *t)
 		printf("print specific record\n");
 	else if (rec[1][0] == 'a')
 	{
-		ft_print_dash(t);
+		ft_print_dash(t, NULL, '-');
 	}
 	else if (rec[1][0] == 's')
 		printf("print sorted?\n");

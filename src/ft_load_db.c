@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:49:56 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 18:33:08 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	ft_load_column(char	*header, t_table *t)
 		col->type = info[0][0];
 	col->name = strdup(info[1]);
 	col->name_len = strlen(col->name);
+	col->max_len = col->name_len;
 	printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
+	printf("\ncol has a max len of %d\n\n", col->max_len);
 	printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);
 	printf("col inserted?\n");
 }
@@ -56,6 +58,12 @@ void	ft_load_row_data(t_column *col, int r_idx, char *record)
 	content = &col->content_array[r_idx];
 	content->data = strdup(record);
 	content->len = strlen(content->data);
+	if (content->len > col->max_len)
+	{
+		printf("row len is larger than header len, will replace\n");
+		col->max_len = content->len;
+		printf("\ncol has a max len of %d\n\n", col->max_len);
+	}
 	printf("You have entered %s of len %d\n", content->data, content->len);
 }
 

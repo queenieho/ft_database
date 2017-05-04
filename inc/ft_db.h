@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:52:39 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 18:28:39 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_column	// holds all the content in one column
 	char		type;	// content type: s.trings, i.nteger, b.oolean, d.ate
 	char		*name;	// column name
 	int			name_len; // len of name
+	int			max_len;
 	t_content	*content_array; // pointer to array of structs containing data
 }				t_column;
 
@@ -145,7 +146,7 @@ void	ft_load_db(t_table *t);
 /*
 ** FT_PRINT_C
 */
-static	int		ft_max_len(t_table *t)
+static	int		ft_max_len(t_table *t);
 void	ft_print_handler(char **rec, t_table *t);
 
 /*
@@ -161,7 +162,6 @@ char	*ft_append_to_row(char *str, t_content record);
 char	*ft_gen_row(t_column *col, int r_idx);
 void	ft_save_rows(int fd, t_table *t);
 void	ft_save_handler(t_table *t);
-
 
 /*
 ** FT_STRSPLIT_C

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:49:30 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/03 18:32:51 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void	ft_insert_column(t_table *t, char type, char *name)
 	col->type = type;
 	col->name = name;
 	col->name_len = strlen(col->name);
+	col->max_len = col->name_len;
 	printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
+	printf("\ncol has a max len of %d\n\n", col->max_len);
 	printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);
 	printf("col inserted?\n");
 

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:51:45 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 09:37:08 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_save_col_header(int fd, t_column col)
 	int		len;
 	// printf("inserting %s of len %d, of type %c\n", col.name, col.name_len, col.type);
 	header = ft_gen_header(col, &len);
-	write(1, header, len);
+	// write(1, header, len);
 	write(fd, header, len);
 	// write(fd, ",", 1);
 	// printf("success!!!\n");
@@ -184,7 +184,7 @@ void	ft_save_handler(t_table *t)
 	write(fd, "\n", 1);
 	if (t->row_id[0])
 	{
-		printf("need to insert rows\n");
+		// printf("need to insert rows\n");
 		ft_save_rows(fd, t);
 	}
 

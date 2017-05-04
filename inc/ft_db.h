@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 18:28:39 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 10:52:45 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,9 @@ void	ft_insert_row(t_table *t);
 */
 void	ft_load_column(char	*header, t_table *t);
 void	ft_get_columns(char *line, t_table *t);
-void	ft_load_row_data(t_column *col, int r_idx, char *record, int *max_size);
+
+void	ft_load_row_data(t_table *t, int r_idx, char *record, int c_idx);
+// void	ft_load_row_data(t_column *col, int r_idx, char *record, int *max_size);
 void	ft_load_row(char *line, t_table *t);
 void	ft_load_db(t_table *t);
 
@@ -173,6 +175,9 @@ void	ft_save_handler(t_table *t);
 /*
 ** FT_UPDATE_C
 */
+int		ft_find_col_index(t_table *t, int col_id);
+void	ft_update_maxlen(t_column *col, int new_len, int *max_size);
+void	ft_update_record(t_table *t, int r_idx);
 void	ft_update_row(t_table *t);
 void	ft_update_handler(char **rec, t_table *t);
 

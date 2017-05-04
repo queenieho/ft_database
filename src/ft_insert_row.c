@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 22:59:55 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 18:34:13 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 09:35:29 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	ft_insert_row_data(t_column *col, int r_idx, int *max_size)
 	if (content->len > col->max_len)
 	{
 		max_size = max_size - col->max_len + content->len;
-		printf("row len is larger than header len, will replace\n");
+		// printf("row len is larger than header len, will replace\n");
 		col->max_len = content->len;
 	}
-	printf("\ncol has a max len of %d\n\n", col->max_len);
-	printf("You have entered %s of len %d\n", content->data, content->len);
+	// printf("\ncol has a max len of %d\n\n", col->max_len);
+	// printf("You have entered %s of len %d\n", content->data, content->len);
 }
 
 void	ft_insert_row(t_table *t)
@@ -58,7 +58,7 @@ void	ft_insert_row(t_table *t)
 	{
 		r_idx = ft_empty_row(t);
 		t->row_id[r_idx] = ft_row_id_gen();
-		printf("First empty row is at index %d and has id %d\n", r_idx, t->row_id[r_idx]);
+		// printf("First empty row is at index %d and has id %d\n", r_idx, t->row_id[r_idx]);
 		while (c_idx < COL_SIZE && t->col_id[c_idx])
 		{
 			ft_insert_row_data(&t->columns[c_idx], r_idx, &t->max_size);

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:57:19 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 11:22:00 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ static	void	ft_print_line(t_table *t)
 
 	str = ft_strnew((int)t->max_size);
 	memset(str, '-', (int)t->max_size - 1);
-	str[0] = '|';
-	str[(int)t->max_size - 1] = '|';
+	str[0] = 'o';
+	str[(int)t->max_size - 1] = 'o';
 	printf("%s", str);
 	ft_strdel(&str);
 	printf("\n");
 }
 
-static	void	ft_header(t_table *t)
+static	void	ft_print_header(t_table *t)
 {
 	t_content	*data;
 	t_column	*col;
@@ -86,14 +86,14 @@ static	void	ft_header(t_table *t)
 	col_num = 0;
 	while (col_num < g_col_id)
 	{
-		printf("|");
+		printf("| ");
 		col = &t->columns[col_num];
 		str = col->name;
 		if (str)
 			ft_print_data((int)col->max_len, str, col->even_odd);
 		col_num++;
 	}
-	printf("|\n");
+	printf(" |\n");
 	ft_print_line(t);
 }
 
@@ -106,14 +106,14 @@ static	void	ft_print_it(t_table *t)
 	int			len;
 	char		*str;
 
-	ft_header(t);
+	ft_print_header(t);
 	row_num = 0;
 	while (row_num < g_row_id)
 	{
 		col_num = 0;
 		while (col_num < g_col_id)
 		{
-			printf("|");
+			printf("| ");
 			col = &t->columns[col_num];
 			data = &col->content_array[row_num];
 			str = data->data;
@@ -121,9 +121,10 @@ static	void	ft_print_it(t_table *t)
 				ft_print_data((int)col->max_len, str, col->even_odd);
 			col_num++;
 		}
-		printf("|\n");
+		printf(" |\n");
 		row_num++;
 	}
+	ft_print_line(t);
 }
 
 void			ft_print_handler(char **rec, t_table *t)
@@ -142,7 +143,8 @@ void			ft_print_handler(char **rec, t_table *t)
 	// t->columns[]->namelen
 	// t->columns[]->content_array->data
 	// data = &(t->columns[idx]);
-	printf("print handler\n");
+	
+	// printf("print handler\n");
 	// --print all
 	// --print r search_col search_param
 	// --print sorted??
@@ -154,9 +156,9 @@ void			ft_print_handler(char **rec, t_table *t)
 	if (rec[1][0] == 'r')
 		printf("print specific record\n");
 	else if (rec[1][0] == 'a')
-	{
 		ft_print_it(t);
-	}
+	else if (rec[1][0] == 'c')
+		ft_print_header(t);
 	else if (rec[1][0] == 's')
 		printf("print sorted?\n");
 }

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 18:32:51 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 09:36:38 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_empty_col(t_table *t)
 {
-	printf("finding empty col\n");
+	// printf("finding empty col\n");
 	int		i;
 
 	i = 0;
@@ -46,10 +46,10 @@ void	ft_insert_column(t_table *t, char type, char *name)
 	col->max_len = col->name_len;
 	t->max_size += col->max_len;
 	col->even_odd = col->max_len % 2 == 1 ? 1 : 0;
-	printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
-	printf("\ncol has a max len of %d\n\n", col->max_len);
-	printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);
-	printf("col inserted?\n");
+	// printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
+	// printf("\ncol has a max len of %d\n\n", col->max_len);
+	// printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);
+	// printf("col inserted?\n");
 
 }
 

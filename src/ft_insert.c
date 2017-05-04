@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 18:26:00 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 10:01:24 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_insert_handler(char **rec, t_table *t)
 
 	if (rec[1][0] == 'c')
 	{
-		printf("insert column\n");
+		// printf("insert column\n");
 		col_name = ft_get_info("What is the column name?");
 		type = ft_get_datatype();
 		// printf("Column name: %s, of type: %c\n", col_name, type);
@@ -43,7 +43,7 @@ void	ft_insert_handler(char **rec, t_table *t)
 	}
 	else if (rec[1][0] == 'r')
 	{
-		printf("insert row\n");
+		// printf("insert row\n");
 		ft_insert_row(t);
 		// ft_insert_record(t);
 	}

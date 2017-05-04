@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 14:16:50 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 14:39:20 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,24 @@ void	ft_insert_handler(char **rec, t_table *t)
 	printf("inserting %d\n", num);
 	if (rec[1][0] == 'c')
 	{
-		// printf("insert column\n");
-		col_name = ft_get_info("What is the column name?");
-		type = ft_get_datatype();
-		// printf("Column name: %s, of type: %c\n", col_name, type);
-		ft_insert_column(t, type, col_name);
+		while (num)
+		{
+			// printf("insert column\n");
+			col_name = ft_get_info("What is the column name?");
+			type = ft_get_datatype();
+			// printf("Column name: %s, of type: %c\n", col_name, type);
+			ft_insert_column(t, type, col_name);
+			num--;
+		}
 	}
 	else if (rec[1][0] == 'r')
 	{
-		// printf("insert row\n");
-		ft_insert_row(t);
-		// ft_insert_record(t);
+		while (num)
+		{
+			// printf("insert row\n");
+			ft_insert_row(t);
+			// ft_insert_record(t);
+			num--;
+		}
 	}
 }

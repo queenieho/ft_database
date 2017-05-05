@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_s.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 23:34:58 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:20:25 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
+
+void		ft_print_sorted(t_table *t)
 
 void		ft_print_selected(t_table *t, int num1, int num2)
 {

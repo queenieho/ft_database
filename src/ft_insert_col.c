@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:36:11 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 22:58:23 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	ft_insert_column(t_table *t, int num)
 	t_column	*col;
 	int			r_idx;
 	char		type;
-	char		*col_name;
+	char		*name;
 
 	while (num)
 	{
-		col_name = ft_get_info("What is the column name?");
+		name = ft_get_info("\nWhat is the column name?");
 		type = ft_get_datatype();
 		idx = ft_empty_col(t);
 		t->col_id[idx] = ft_col_id_gen();
@@ -62,10 +62,9 @@ void	ft_insert_column(t_table *t, int num)
 			ft_insert_new_data(col, r_idx - 1);
 		num--;
 	}
-	ft_print_header(t);
 }
 
-char	ft_get_datatype()
+char	ft_get_datatype(void)
 {
 	char	type;
 

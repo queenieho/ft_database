@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 15:00:45 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 22:37:39 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_load_column(char	*header, t_table *t)
 	col->name_len = strlen(col->name);
 	col->max_len = col->name_len;
 	t->max_size += col->max_len;
-	col->even_odd = col->max_len % 2 == 1 ? 1 : 0;
+	// col->even_odd = col->max_len % 2 == 1 ? 1 : 0;
 	// printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
 	// printf("\ncol has a max len of %d\n\n", col->max_len);
 	// printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);

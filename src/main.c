@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 09:36:02 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:00:42 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,12 @@ int 	main()
 {
 	char	*line;
 	char	**av;
-	// int		status;
 	t_table	table;
 
-	// status = 1;
 	line = NULL;
-
-	// g_col_id = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-	// g_row_id = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-	// table = mmap(NULL, sizeof(t_table), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-	// *g_col_id = 0;
-	// *g_row_id = 0;
-	// Need to init table
 	g_col_id = 0;
 	g_row_id = 0;
 	ft_init_table(&table);
-
-	// IF WE ALREADY HAVE A DB FILE, LOAD DB FILE INTO TABLE
 
 	printf("%s***************************************%s\n", R, W);
 	printf("%s*  Welcome to My_DBMS, our 42 ft_db!  *%s\n", R, W);
@@ -103,24 +92,12 @@ int 	main()
 	printf("\n --help for usage\n\n");
 	
 	ft_load_db(&table);
-	// while (status)
-	// {
-	// 	printf("%s My_DBMS %s- %s", DASH, Y, W);
-	// 	line = ft_readline();
-	// 	av = ft_strsplit(line, ' ');
-	// 	status = ft_db_exe(av, table);
-	// 	// printf("%d\n", *g_col_id);
-	// 	free(line);
-	// 	free(av);		
-	// }
 	while (1)
 	{
 		printf("%s My_DBMS %s- %s", DASH, Y, W);
 		line = ft_readline();
 		av = ft_strsplit(line, ' ');
-		// ft_db_exe(av, table);
 		ft_dbms(av[0], av, &table);
-		// printf("%d\n", *g_col_id);
 		free(line);
 		free(av);		
 	}

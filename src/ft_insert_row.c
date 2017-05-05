@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:03:34 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:07:46 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 22:58:11 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,31 @@ void	ft_insert_row_data(t_column *col, int r_idx, int *max_size)
 	t_content	*content;
 
 	content = &col->content_array[r_idx];
-	if (!(content->data = ft_get_info(col->name)))
-		content->data = strdup("-");
+	content->data = ft_get_info(col->name);
 	content->len = strlen(content->data);
 	ft_update_maxlen(col, content->len, max_size);
 }
 
-void	ft_insert_row(t_table *t)
+void	ft_insert_row(t_table *t, int num)
 {
 	int		c_idx;
 	int		r_idx;
 
-	c_idx = 0;
 	if (!t->col_id[0])
 		printf("No existing column, please insert at least one column\n");
 	else
 	{
-		r_idx = ft_empty_row(t);
-		t->row_id[r_idx] = ft_row_id_gen();
-		while (c_idx < COL_SIZE && t->col_id[c_idx])
+		while (num)
 		{
-			ft_insert_row_data(&t->columns[c_idx], r_idx, &t->max_size);
-			c_idx++;
+			c_idx = 0;
+			r_idx = ft_empty_row(t);
+			t->row_id[r_idx] = ft_row_id_gen();
+			while (c_idx < COL_SIZE && t->col_id[c_idx])
+			{
+				ft_insert_row_data(&t->columns[c_idx], r_idx, &t->max_size);
+				c_idx++;
+			}
+			num--;
 		}
-		ft_print_row(t, r_idx);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:36:05 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:01:20 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_delete_row(t_table *t);
 void	ft_delete_handler(char **rec, t_table *t);
 
 /*
-** FT_FORK_C
+** MAIN_C
 */
 int		ft_db_exe(char **av, t_table *table);
 char	*ft_readline();
@@ -119,7 +119,7 @@ char	ft_get_datatype();
 int		ft_row_id_gen();
 int		ft_empty_row(t_table *t);
 void	ft_insert_row_data(t_column *col, int r_idx, int *max_size);
-void	ft_insert_row(t_table *t);
+void	ft_insert_row(t_table *t, int num);
 
 /*
 ** FT_LOAD_DB_C

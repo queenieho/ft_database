@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 15:18:59 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 16:27:00 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*ft_append_to_row(char *str, t_content record)
 	return (row);
 }
 
-char	*ft_gen_row(t_column *col, int r_idx)
+char	*ft_gen_row(t_column *col, int r_idx, t_table *t)
 {
 	char	*row;
 	int		c_idx;
@@ -94,7 +94,8 @@ char	*ft_gen_row(t_column *col, int r_idx)
 	row = ft_init_row(col[0].content_array[r_idx]);
 	while (c_idx < COL_SIZE && col[c_idx].name)
 	{
-		row = ft_append_to_row(row, col[c_idx].content_array[r_idx]);
+		if (t->col_id[c_idx] > 0)
+			row = ft_append_to_row(row, col[c_idx].content_array[r_idx]);
 		c_idx++;
 	}
 	return (row);
@@ -112,7 +113,7 @@ void	ft_save_rows(int fd, t_table *t)
 	{
 		if (t->row_id[r_idx] > 0)
 		{
-			row_string = ft_gen_row(t->columns, r_idx);
+			row_string = ft_gen_row(t->columns, r_idx, t);
 			len = strlen(row_string);
 			write(fd, row_string, len);
 			write(fd, "\n", 1);
@@ -131,7 +132,8 @@ void	ft_save_handler(t_table *t)
 	c_idx = 0;
 	while (c_idx < COL_SIZE && t->col_id[c_idx] != 0)
 	{
-		ft_save_col_header(fd, t->columns[c_idx]);
+		if (t->col_id[c_idx] > 0)
+			ft_save_col_header(fd, t->columns[c_idx]);
 		c_idx++;
 	}
 	write(fd, "\n", 1);

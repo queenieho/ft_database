@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 15:33:27 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 16:05:36 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_get_columns(char *line, t_table *t)
 		ft_load_column(*headers, t);
 		headers++;
 	}
-	// free(headers);
 }
 
 void	ft_load_row_data(t_table *t, int r_idx, char *record, int c_idx)

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:58:23 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:08:28 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_empty_col(t_table *t)
 	int		i;
 
 	i = 0;
-	while (i < COL_SIZE && t->col_id[i])
+	while (i < COL_SIZE && t->col_id[i] > 0)
 		i++;
 	return (i);
 }

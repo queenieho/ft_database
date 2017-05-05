@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:03:34 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:58:11 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:08:18 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_empty_row(t_table *t)
 	int		idx;
 
 	idx = 0;
-	while (idx < ROW_SIZE && t->row_id[idx])
+	while (idx < ROW_SIZE && t->row_id[idx] > 0)
 		idx++;
 	return(idx);
 }

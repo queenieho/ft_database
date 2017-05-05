@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 15:14:03 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 21:49:07 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,25 @@ static	int	ft_search_header(t_table *t, char *find)
 	return (-1);
 }
 
-static	int	ft_search_col(t_table *t, int row_idx, char *find)
+static	int	ft_search_col(t_table *t, int row_idx, int col_idx, char *find)
 {
 	t_content	*data;
 	t_column	*col;
-	int			col_idx;
 	char		*str;
 	int			ret;
 
-	col_idx = 0;
 	ret = 0;
-	while (col_idx < g_col_id)
+	col = &t->columns[col_idx];
+	data = &col->content_array[row_idx];
+	str = data->data;
+	if (ft_strstr(str, find))
 	{
-		col = &t->columns[col_idx];
-		data = &col->content_array[row_idx];
-		str = data->data;
-		if (ft_strstr(str, find))
-		{
-			ret = 1;
-		}
-		col_idx++;
+		ret = 1;
 	}
 	return (ret);
 }
 
-static	int	ft_search_row(t_table *t, char *str)
+static	int	ft_search_row(t_table *t, char *str, int col_idx)
 {	
 
 	int			row_idx;
@@ -71,7 +65,7 @@ static	int	ft_search_row(t_table *t, char *str)
 	{
 		if(t->row_id[row_idx] > 0)
 		{
-			if (ft_search_col(t, row_idx, str))
+			if (ft_search_col(t, row_idx, col_idx, str))
 			{
 				ft_print_row(t, row_idx);
 				ret = 1;
@@ -98,7 +92,7 @@ void			ft_print_filtered(t_table *t)
 			str = ft_get_info("What would you like to filter for?");
 			if (str)
 			{
-				if (ft_search_row(t, str) == -1)
+				if (ft_search_row(t, str, col_idx) == -1)
 					printf("Search of %s was not found.\n", str);
 			}
 		}

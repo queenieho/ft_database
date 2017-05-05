@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 16:03:39 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 16:56:06 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static	char	*ft_comp_cols(t_table *t, int row_id, int col_idx)
 	return (str);
 }
 
-static	int ft_sort_asnd_int(t_table *t, int r_idx, int col_idx, int **array)
+static	void ft_sort_asnd_int(t_table *t, int r_idx, int col_idx, int **array)
 {
 	int			int1;
 	int			int2;
@@ -53,7 +53,6 @@ static	int ft_sort_asnd_int(t_table *t, int r_idx, int col_idx, int **array)
 	int			*sort;
 	int			tmp;
 
-	flag = 0;
 	sort = *array;
 	int1 = ft_atoi(ft_comp_cols(t, sort[r_idx], col_idx));
 	int2 = ft_atoi(ft_comp_cols(t, sort[r_idx + 1], col_idx));
@@ -62,20 +61,17 @@ static	int ft_sort_asnd_int(t_table *t, int r_idx, int col_idx, int **array)
 		tmp = sort[r_idx + 1];
 		sort[r_idx + 1] = sort[r_idx];
 		sort[r_idx] = tmp;
-		flag = 1;
+
 	}
-	return (flag);
 }
 
-static	int ft_sort_asnd_str(t_table *t, int r_idx, int col_idx, int **array)
+static	void ft_sort_asnd_str(t_table *t, int r_idx, int col_idx, int **array)
 {
 	char		*str1;
 	char		*str2;
-	int			flag;
 	int			*sort;
 	int			tmp;
 
-	flag = 0;
 	sort = *array;
 	str1 = ft_comp_cols(t, sort[r_idx], col_idx);
 	str2 = ft_comp_cols(t, sort[r_idx + 1], col_idx);
@@ -84,22 +80,19 @@ static	int ft_sort_asnd_str(t_table *t, int r_idx, int col_idx, int **array)
 		tmp = sort[r_idx + 1];
 		sort[r_idx + 1] = sort[r_idx];
 		sort[r_idx] = tmp;
-		flag = 1;
+
 	}
 	free(str1);
 	free(str2);
-	return (flag);
 }
 
-static	int ft_sort_dsnd_int(t_table *t, int r_idx, int col_idx, int **array)
+static	void ft_sort_dsnd_int(t_table *t, int r_idx, int col_idx, int **array)
 {
 	int			int1;
 	int			int2;
-	int			flag;
 	int			*sort;
 	int			tmp;
 
-	flag = 0;
 	sort = *array;
 	int1 = ft_atoi(ft_comp_cols(t, sort[r_idx], col_idx));
 	int2 = ft_atoi(ft_comp_cols(t, sort[r_idx + 1], col_idx));
@@ -108,20 +101,19 @@ static	int ft_sort_dsnd_int(t_table *t, int r_idx, int col_idx, int **array)
 		tmp = sort[r_idx + 1];
 		sort[r_idx + 1] = sort[r_idx];
 		sort[r_idx] = tmp;
-		flag = 1;
+
 	}
-	return (flag);
 }
 
-static	int ft_sort_dsnd_str(t_table *t, int r_idx, int col_idx, int **array)
+
+
+static	void ft_sort_dsnd_str(t_table *t, int r_idx, int col_idx, int **array)
 {
 	char		*str1;
 	char		*str2;
-	int			flag;
 	int			*sort;
 	int			tmp;
 
-	flag = 0;
 	sort = *array;
 	str1 = ft_comp_cols(t, sort[r_idx], col_idx);
 	str2 = ft_comp_cols(t, sort[r_idx + 1], col_idx);
@@ -130,42 +122,77 @@ static	int ft_sort_dsnd_str(t_table *t, int r_idx, int col_idx, int **array)
 		tmp = sort[r_idx + 1];
 		sort[r_idx + 1] = sort[r_idx];
 		sort[r_idx] = tmp;
-		flag = 1;
+
 	}
 	free(str1);
 	free(str2);
-	return (flag);
 }
 
-static	int		ft_comp_rows(t_table *t, int col_idx, int **array, int asnd_dsnd)
+// void sort_int_tab(int *tab, unsigned int size)
+// {
+// 	unsigned int i;
+// 	int tmp;
+
+// 	tmp = 0;
+// 	while (size)
+// 	{
+// 		i = 0;
+// 		while (i + 1 < size)
+// 		{
+// 			if (tab[i] > tab[i + 1])
+// 			{
+// 				tmp = tab[i];
+// 				tab[i] = tab[i + 1];
+// 				tab[i + 1] = tmp;
+// 			}
+// 			i++;
+// 		}
+// 		size--;
+// 	}
+// }
+static	void	ft_sort_type_asnd(t_table *t, int col_idx, int r_idx, int **array)
 {
-	t_column	*col;
-	int			r_idx;
-	int			flag;
 	int			*sort;
 
-	r_idx = 0;
-	flag = 0;
 	sort = *array;
-	col = &t->columns[col_idx];
-	while (r_idx < g_row_id && sort[r_idx + 1] > 0)
+	if (t->columns[col_idx].type == 'i')
+		ft_sort_asnd_int(t, r_idx, col_idx, &sort);
+	else if (t->columns[col_idx].type == 's')
+		ft_sort_asnd_str(t, r_idx, col_idx, &sort);
+}
+
+static	void	ft_sort_type_dsnd(t_table *t, int col_idx, int r_idx, int **array)
+{
+	int			*sort;
+
+	sort = *array;
+	if (t->columns[col_idx].type == 'i')
+		ft_sort_dsnd_int(t, r_idx, col_idx, &sort);
+	else if (t->columns[col_idx].type == 's')
+		ft_sort_dsnd_str(t, r_idx, col_idx, &sort);
+}
+
+static	void	ft_comp_rows(t_table *t, int col_idx, int **array, int asnd_dsnd)
+{
+	int			r_idx;
+	int			*sort;
+	int			size;
+
+	sort = *array;
+	size = g_row_id;
+	while (size)
 	{
-		printf("%d\n", asnd_dsnd);
-		if (col->type == 'i')
+		r_idx = 0;
+		while (r_idx + 1 < size && sort[r_idx + 1] > 0)
 		{
-			printf("ITS AN INT\n");
-			flag = asnd_dsnd ? ft_sort_dsnd_int(t, r_idx, col_idx, &sort) :
-				ft_sort_asnd_int(t, r_idx, col_idx, &sort);
+			if (asnd_dsnd)
+				ft_sort_type_dsnd(t, col_idx, r_idx, &sort);
+			else
+				ft_sort_type_asnd(t, col_idx, r_idx, &sort);
+			r_idx++;
 		}
-		else if (col->type == 's')
-		{
-			printf("its a string\n");
-			flag = asnd_dsnd ? ft_sort_dsnd_str(t, r_idx, col_idx, &sort) :
-				ft_sort_asnd_str(t, r_idx, col_idx, &sort);
-		}
-		r_idx++;
+		size--;
 	}
-	return (flag);
 }
 
 static void		ft_gen_sort_array(t_table *t, int num, int **array)
@@ -197,12 +224,10 @@ static void		ft_sorter(t_table *t, int col_idx)
 {
 	int			*sort_exst;
 	int			num_rows;
-	int			flag;
 	int			asnd_dsnd;
 	char		*str;
 
 	asnd_dsnd = 0;
-	flag = 1;
 	num_rows = ft_empty_row(t);
 	sort_exst = (int *)malloc(sizeof(int) * (num_rows + 1));
 	bzero(sort_exst, sizeof(int) * (num_rows + 1));
@@ -210,8 +235,7 @@ static void		ft_sorter(t_table *t, int col_idx)
 		if (ft_atoi(str) == 1)
 			asnd_dsnd = 1;
 	ft_gen_sort_array(t, num_rows, &sort_exst);
-	while(flag == 1)
-		flag = ft_comp_rows(t, col_idx, &sort_exst, asnd_dsnd);
+	ft_comp_rows(t, col_idx, &sort_exst, asnd_dsnd);
 	ft_print_sort_table(t, sort_exst);
 }
 

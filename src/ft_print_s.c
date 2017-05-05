@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 23:32:26 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 23:33:43 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void		ft_print_selected(t_table *t, int num1, int num2)
 		ft_print_line(t);
 	}
 	else
-		printf("The first number must be >= 0 and < the second number\n");
+		printf("The first number must be >= 0 and < the second number.\n");
 }

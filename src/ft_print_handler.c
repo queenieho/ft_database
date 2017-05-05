@@ -6,13 +6,13 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 00:52:42 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 02:04:23 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-static	int	ft_search_header(t_table *t, char *find)
+int		ft_search_header(t_table *t, char *find)
 {
 	t_content	*data;
 	t_column	*col;
@@ -26,7 +26,7 @@ static	int	ft_search_header(t_table *t, char *find)
 		col = &t->columns[col_idx];
 		str = col->name;
 		if (str && t->col_id[col_idx] > 0)
-			if(ft_strcmp(str, find))
+			if(!(ft_strcmp(str, find)))
 				return (col_idx);
 		col_idx++;
 	}

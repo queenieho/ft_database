@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 23:14:14 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:35:19 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,37 +103,26 @@ void			ft_print_handler(char **rec, t_table *t)
 {
 	int		num1;
 	int		num2;
-	t_content	*data;
-	t_column	*col;
-	int			max;
 
-	// t->col_id[]
-	// t->row_id[]
-	// t->columns[]
-	// t->columns[]->type
-	// t->columns[]->name
-	// t->columns[]->namelen
-	// t->columns[]->content_array->data
-	// data = &(t->columns[idx]);
-
-	// printf("print handler\n");
-	// --print all
-	// --print r search_col search_param
-	// --print sorted??
-	
-	printf("HERE!!\n");
 	if (!rec[1])
 		printf("print PRINT USAGE\n");
 	else if (rec[1][0] == 'r')
 	{
-		printf("here\n");
-		if ((rec[2] && rec[3]))
+		if (rec[2] && rec[3])
 		{
-			if ((num1 = atoi(rec[2])) >= 0 && (num2 = atoi(rec[3]) >= 0))
+			num1 = ft_find_row(ft_atoi(rec[2]), t);
+			num2 = ft_find_row(ft_atoi(rec[3]), t);
+			if (num1 >= 0 && num2 >= 0)
 				ft_print_selected(t, num1, num2);
+			else if (num1 >= 0)
+				ft_print_selected(t, num1, 0);
 		}
-		else if ((num1 = atoi(rec[2])) >= 0)
-			ft_print_selected(t, num1, 0);
+		else if (rec[2])
+		{
+			num1 = ft_find_row(ft_atoi(rec[2]), t);
+			if (num1 >= 0)
+				ft_print_selected(t, num1, 0);
+		}
 	}
 	else if (rec[1][0] == 'a')
 		ft_print_table(t);
@@ -141,6 +130,5 @@ void			ft_print_handler(char **rec, t_table *t)
 		ft_print_header(t);
 	else if (rec[1][0] == 'f')
 		ft_print_filtered(t);
-	// else if (rec[1][0] == 's')
-		
+	// else if (rec[1][0] == 's')	
 }

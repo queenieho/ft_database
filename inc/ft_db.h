@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_db.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 23:01:20 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:52:06 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void	ft_print_table(t_table *t);
 void	ft_print_handler(char **rec, t_table *t);
 void	ft_print_filtered(t_table *t);
 void	ft_print_selected(t_table *t, int num1, int num2);
+void	ft_print_sorted(t_table *t);
 /*
 ** FT_SAVE_C
 */

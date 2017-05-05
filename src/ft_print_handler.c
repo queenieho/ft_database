@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 23:35:19 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:52:42 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,13 @@ void			ft_print_handler(char **rec, t_table *t)
 			if (num1 >= 0 && num2 >= 0)
 				ft_print_selected(t, num1, num2);
 			else if (num1 >= 0)
-				ft_print_selected(t, num1, 0);
+				ft_print_selected(t, num1, -1);
 		}
 		else if (rec[2])
 		{
 			num1 = ft_find_row(ft_atoi(rec[2]), t);
 			if (num1 >= 0)
-				ft_print_selected(t, num1, 0);
+				ft_print_selected(t, num1, -1);
 		}
 	}
 	else if (rec[1][0] == 'a')
@@ -130,5 +130,6 @@ void			ft_print_handler(char **rec, t_table *t)
 		ft_print_header(t);
 	else if (rec[1][0] == 'f')
 		ft_print_filtered(t);
-	// else if (rec[1][0] == 's')	
+	else if (rec[1][0] == 's')	
+		ft_print_sorted(t);
 }

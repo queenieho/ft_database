@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/10 11:33:51 by apineda           #+#    #+#             */
-/*   Updated: 2016/10/24 14:13:51 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 01:08:31 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strnew(size_t size)
 	char	*str;
 
 	str = NULL;
-	if (!(str = malloc(size + 1)))
+	if (!(str = malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	if (size)
 		ft_bzero(str, size + 1);

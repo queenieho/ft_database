@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 22:30:19 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 23:02:58 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void			ft_print_filtered(t_table *t)
 
 void			ft_print_handler(char **rec, t_table *t)
 {
-	int		row_idx;
-	int		col_idx;
+	int		num1;
+	int		num2;
 	t_content	*data;
 	t_column	*col;
 	int			max;
@@ -121,17 +121,19 @@ void			ft_print_handler(char **rec, t_table *t)
 	// --print r search_col search_param
 	// --print sorted??
 	
-
+	printf("HERE!!\n");
 	if (!rec[1])
 		printf("print PRINT USAGE\n");
 	else if (rec[1][0] == 'r')
 	{
-		if ((row_idx = ft_find_row(ft_atoi(ft_get_info("What row number?")), t)) >= 0)
+		printf("here\n");
+		if ((rec[2] && rec[3]))
 		{
-			ft_print_header(t);
-			ft_print_row(t, row_idx);
-			ft_print_line(t);
+			if ((num1 = atoi(rec[2])) >= 0 && (num2 = atoi(rec[3]) >= 0))
+				ft_print_selected(t, num1, num2);
 		}
+		else if ((num1 = atoi(rec[2])) >= 0)
+			ft_print_selected(t, num1, 0);
 	}
 	else if (rec[1][0] == 'a')
 		ft_print_table(t);
@@ -139,6 +141,6 @@ void			ft_print_handler(char **rec, t_table *t)
 		ft_print_header(t);
 	else if (rec[1][0] == 'f')
 		ft_print_filtered(t);
-	else if (rec[1][0] == 's')
-		ft_print_selected(t);
+	// else if (rec[1][0] == 's')
+		
 }

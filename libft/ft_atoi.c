@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:43:34 by apineda           #+#    #+#             */
-/*   Updated: 2016/10/25 20:13:12 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 22:53:21 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				ft_atoi(const char *str)
 	i = ft_morecheck(str, i);
 	while ((str[i]) != '\0')
 	{
-		if ((str[i - 1]) == '-')
+		if (i && (str[i - 1]) == '-')
 			j = -1;
 		if (ft_isdigit(str[i]))
 			a = a * 10 + str[i++] - '0';

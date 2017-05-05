@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/05 11:56:02 by qho              ###   ########.fr        #
+#    Updated: 2017/05/05 13:27:00 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ all: $(NAME)
 $(NAME): $(SRC)
 	@make -C libft
 	@echo "\033[32mCompiled libft\033[0m"
-	@$(CC) -I$(INC) -L $(LIBFT) $(SRC) -o $(NAME)
+	@$(CC) -g -I$(INC) -L $(LIBFT) $(SRC) -o $(NAME)
 	@echo "\033[32m$(NAME) compiled\033[0m"
 # 	@ar rc $(NAME) $(OBJ)
 # 	@ranlib	$(NAME)

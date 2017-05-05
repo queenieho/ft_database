@@ -6,7 +6,7 @@
 #    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/04 14:21:11 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/04 21:58:59 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT	=	libft/ -lft
 
 # Source and header files, and directory
 INC		=	./inc/
-FILES	=	ft_db ft_fork ft_insert ft_update ft_delete ft_print \
+FILES	=	ft_db ft_fork ft_insert ft_update ft_delete ft_print_all \
 			ft_save ft_insert_row ft_insert_col	ft_load_db \
 			ft_print_handler
 

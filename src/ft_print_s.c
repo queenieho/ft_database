@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 15:22:25 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 16:03:39 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,12 +150,19 @@ static	int		ft_comp_rows(t_table *t, int col_idx, int **array, int asnd_dsnd)
 	col = &t->columns[col_idx];
 	while (r_idx < g_row_id && sort[r_idx + 1] > 0)
 	{
+		printf("%d\n", asnd_dsnd);
 		if (col->type == 'i')
+		{
+			printf("ITS AN INT\n");
 			flag = asnd_dsnd ? ft_sort_dsnd_int(t, r_idx, col_idx, &sort) :
 				ft_sort_asnd_int(t, r_idx, col_idx, &sort);
+		}
 		else if (col->type == 's')
+		{
+			printf("its a string\n");
 			flag = asnd_dsnd ? ft_sort_dsnd_str(t, r_idx, col_idx, &sort) :
 				ft_sort_asnd_str(t, r_idx, col_idx, &sort);
+		}
 		r_idx++;
 	}
 	return (flag);

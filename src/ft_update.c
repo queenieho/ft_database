@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 01:16:56 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 10:03:24 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_update_record(t_table *t, int r_idx)
 	field = ft_get_info("Which field would you like to update?");
 	if ((c_idx = ft_search_header(t, field)) == -1)
 	{
-		if ((ft_get_info("Could not find a matching field. Try another? [y/n]")[0]) == 'n')
+		printf("Could not find a matching field. ");
+		if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
 			return ;
 		else
 			ft_update_record(t, r_idx);
@@ -71,7 +72,8 @@ void	ft_update_row(t_table *t)
 	row_id = atoi(ft_get_info("Which row ID would you like to update?"));
 	if ((r_idx = ft_find_row(row_id, t)) == -1)
 	{
-		if ((ft_get_info("This row does not exist. Try another? [y/n]")[0]) == 'n')
+		printf("This row does not exist. ");
+		if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
 			return ;
 		else
 			ft_update_row(t);
@@ -100,7 +102,8 @@ void	ft_update_column(t_table *t)
 	field = ft_get_info("Which field would you like to update?");
 	if ((c_idx = ft_search_header(t, field)) == -1)
 	{
-		if ((ft_get_info("Could not find a matching field. Try another? [y/n]")[0]) == 'n')
+		printf("Could not find a matching field. \n");
+		if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
 			return ;
 		else
 			ft_update_column(t);
@@ -119,7 +122,7 @@ void	ft_update_column(t_table *t)
 void	ft_update_handler(char **rec, t_table *t)
 {
 	if (!rec[1])
-		printf("print UPDATE USAGE\n");
+		ft_print_help_update();
 	else if (rec[1][0] == 'r')
 		ft_update_row(t);
 	else if (rec[1][0] == 'c')

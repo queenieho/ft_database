@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_insert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:57:34 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 12:17:29 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ void	ft_insert_handler(char **rec, t_table *t)
 
 	num = 1;
 	if (!rec[1])
-		printf("print INSERT USAGE\n");
-	else if (rec[2])
-		if ((num = atoi(rec[2])) <= 0)
+		ft_print_help_insert();
+	else
+	{
+		if (rec[2] && (num = atoi(rec[2])) <= 0)
 			num = 1;
-	if (rec[1][0] == 'c')
-		ft_insert_column(t, num);
-	else if (rec[1][0] == 'r')
-		ft_insert_row(t, num);
+		if (rec[1][0] == 'c')
+			ft_insert_column(t, num);
+		else if (rec[1][0] == 'r')
+			ft_insert_row(t, num);
+	}
 }

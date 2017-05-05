@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/04 23:00:58 by qho              ###   ########.fr        #
+#    Updated: 2017/05/05 11:56:02 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,7 @@ LIBFT	=	libft/ -lft
 INC		=	./inc/
 FILES	=	main ft_db ft_insert ft_update ft_delete ft_print_all \
 			ft_save ft_insert_row ft_insert_col	ft_load_db \
-			ft_print_handler ft_print_s
-
-#			ft_strsplit ft_utils
+			ft_print_handler ft_print_s ft_help
 
 T_FILES	=	ft_fork ft_strsplit	ft_test	\
 

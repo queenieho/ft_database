@@ -6,16 +6,16 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:03:34 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 00:08:18 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 11:06:06 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-int		ft_row_id_gen()
+int		ft_row_id_gen(void)
 {
 	g_row_id += 1;
-	return(g_row_id);
+	return (g_row_id);
 }
 
 int		ft_empty_row(t_table *t)
@@ -23,9 +23,9 @@ int		ft_empty_row(t_table *t)
 	int		idx;
 
 	idx = 0;
-	while (idx < ROW_SIZE && t->row_id[idx] > 0)
+	while (idx < ROW_SIZE && t->row_id[idx] != 0)
 		idx++;
-	return(idx);
+	return (idx);
 }
 
 void	ft_insert_row_data(t_column *col, int r_idx, int *max_size)

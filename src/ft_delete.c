@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:44 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 01:29:46 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 10:31:56 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_delete_row(t_table *t)
 		return ;
 	}
 	printf("We found the following record\n\n");
-	ft_print_selected(t, r_idx, 0);
+	ft_print_selected(t, r_idx, -1);
 	if ((ft_get_info("Delete? [y/n]")[0]) == 'n')
 		return ;
 	t->row_id[r_idx] = -1;
@@ -56,7 +56,8 @@ void	ft_delete_column(t_table *t)
 	field = ft_get_info("Which column would you like to delete?");
 	if ((c_idx = ft_search_header(t, field)) == -1)
 	{
-		if ((ft_get_info("Could not find a matching column. Try another? [y/n]")[0]) == 'n')
+		printf("Could not find a matching column. ");
+		if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
 			return ;
 		else
 			ft_delete_column(t);
@@ -71,7 +72,7 @@ void	ft_delete_column(t_table *t)
 void	ft_delete_handler(char **rec, t_table *t)
 {
 	if (!rec[1])
-		printf("print DELETE USAGE\n");
+		ft_print_help_delete();
 	else if (rec[1][0] == 'c')
 		ft_delete_column(t);
 	else if (rec[1][0] == 'r')

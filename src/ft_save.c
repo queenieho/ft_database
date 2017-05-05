@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 23:27:41 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 09:26:42 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_init_row(t_content record)
 	row = (char *)malloc(sizeof(char) * (record.len + 2));
 	row = strcpy(row, record.data);
 	row = strcat(row, ",");
-	return(row);
+	return (row);
 }
 
 char	*ft_append_to_row(char *str, t_content record)
@@ -81,7 +81,7 @@ char	*ft_append_to_row(char *str, t_content record)
 	row = strcat(row, record.data);
 	row = strcat(row, ",");
 	free(str);
-	return(row);
+	return (row);
 }
 
 char	*ft_gen_row(t_column *col, int r_idx)

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 00:08:28 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 11:06:02 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int		ft_empty_col(t_table *t)
 	int		i;
 
 	i = 0;
-	while (i < COL_SIZE && t->col_id[i] > 0)
+	while (i < COL_SIZE && t->col_id[i] != 0)
 		i++;
 	return (i);
 }
 
-int		ft_col_id_gen()
+int		ft_col_id_gen(void)
 {
 	g_col_id += 1;
-	return(g_col_id);
+	return (g_col_id);
 }
 
 void	ft_insert_new_data(t_column *col, int r_idx)
@@ -73,5 +73,5 @@ char	ft_get_datatype(void)
 	printf(" [i] integer\n");
 	printf(" [d] date\n");
 	type = ft_readline()[0];
-	return(type);
+	return (type);
 }

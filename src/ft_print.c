@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 14:22:13 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 21:56:24 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_print_header(t_table *t)
 		printf("| ");
 		col = &t->columns[col_num];
 		str = col->name;
-		if (str)
+		if (str && t->col_id[col_idx] > 0)
 			ft_print_data((int)col->max_len, str);
 		col_num++;
 	}
@@ -115,7 +115,7 @@ void	ft_print_row(t_table *t, int row_idx)
 		col = &t->columns[col_idx];
 		data = &col->content_array[row_idx];
 		str = data->data;
-		if (str)
+		if (str && t->col_id[col_idx] > 0)
 			ft_print_data((int)col->max_len, str);
 		col_idx++;
 	}

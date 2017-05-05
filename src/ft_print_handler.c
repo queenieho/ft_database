@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 21:49:07 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 21:57:16 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static	int	ft_search_header(t_table *t, char *find)
 	{
 		col = &t->columns[col_idx];
 		str = col->name;
-		if (str)
+		if (str && col_id[col_idx] > 0)
 			if(ft_strcmp(str, find))
 				return (col_idx);
 		col_idx++;

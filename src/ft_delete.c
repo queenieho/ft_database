@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:44 by qho               #+#    #+#             */
-/*   Updated: 2017/05/03 17:48:54 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:01:52 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_delete_row(t_table *t)
 	char	*row_string;
 
 	row_id = atoi(ft_get_info("Which row ID would you like to delete?"));
-	// printf("I have to delete %d  T_T\n", row);
 	if ((r_idx = ft_find_row(row_id, t)) == -1)
 	{
 		printf("Row ID: %d does not exist. Please verify and try again. \n", row_id);

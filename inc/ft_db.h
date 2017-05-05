@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_db.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 22:40:19 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 23:01:20 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_column	// holds all the content in one column
 	char		type;	// content type: s.trings, i.nteger, b.oolean, d.ate
 	char		*name;	// column name
 	int			name_len; // len of name
-	int			even_odd;
 	int			max_len;
 	t_content	*content_array; // pointer to array of structs containing data
 }				t_column;
@@ -78,20 +77,6 @@ typedef struct	s_table
 	int			max_size;
 	t_column	*columns;	// pointers to each column
 }				t_table;
-
-
-/*
-** STRUCT FOR RECORD
-*/
-typedef struct	s_person
-{
-	unsigned int	key;
-	char			fname[16];
-	char			lname[16];
-	unsigned int	age;
-}				t_person;
-
-
 
 
 /*
@@ -108,7 +93,7 @@ void	ft_delete_row(t_table *t);
 void	ft_delete_handler(char **rec, t_table *t);
 
 /*
-** FT_FORK_C
+** MAIN_C
 */
 int		ft_db_exe(char **av, t_table *table);
 char	*ft_readline();
@@ -125,7 +110,7 @@ void	ft_insert_handler(char **rec, t_table *t);
 */
 int		ft_empty_col(t_table *t);
 int		ft_col_id_gen();
-void	ft_insert_column(t_table *t, char type, char *name);
+void	ft_insert_column(t_table *t, int num);
 char	ft_get_datatype();
 
 /*
@@ -134,7 +119,7 @@ char	ft_get_datatype();
 int		ft_row_id_gen();
 int		ft_empty_row(t_table *t);
 void	ft_insert_row_data(t_column *col, int r_idx, int *max_size);
-void	ft_insert_row(t_table *t);
+void	ft_insert_row(t_table *t, int num);
 
 /*
 ** FT_LOAD_DB_C
@@ -172,11 +157,6 @@ char	*ft_append_to_row(char *str, t_content record);
 char	*ft_gen_row(t_column *col, int r_idx);
 void	ft_save_rows(int fd, t_table *t);
 void	ft_save_handler(t_table *t);
-
-/*
-** FT_STRSPLIT_C
-*/
-// char		**ft_strsplit(char const *s, char c);
 
 /*
 ** FT_UPDATE_C

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:44 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 23:01:52 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:31:09 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,22 @@ void	ft_delete_row(t_table *t)
 	row_id = atoi(ft_get_info("Which row ID would you like to delete?"));
 	if ((r_idx = ft_find_row(row_id, t)) == -1)
 	{
-		printf("Row ID: %d does not exist. Please verify and try again. \n", row_id);
+		printf("This row does not exist. Please verify and try again.\n");
 		return ;
 	}
-	row_string = ft_gen_row(t->columns, r_idx);
-	printf("The record we found is the following.\n%s\n", row_string);
+	printf("We found the following record\n\n");
+	ft_print_selected(t, r_idx, 0);
 	if ((ft_get_info("Delete? [y/n]")[0]) == 'n')
-	{
-		printf("keep\n");
 		return ;
-	}
 	t->row_id[r_idx] = -1;
 }
 
 void	ft_delete_handler(char **rec, t_table *t)
 {
-	printf("delete handler\n");
-	// --delete r search_col search_param
-	// --delete c column_name??
 	if (!rec[1])
 		printf("print DELETE USAGE\n");
-	if (rec[1][0] == 'c')
+	else if (rec[1][0] == 'c')
 		printf("delete column\n");
 	else if (rec[1][0] == 'r')
-	{
-		printf("delete row\n");
 		ft_delete_row(t);
-	}
 }

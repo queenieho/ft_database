@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 15:00:49 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:33:07 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_update_record(t_table *t, int r_idx)
 	char	*new_input;
 	int		new_len;
 
-	printf("PRINT COLUMNS WITH NUMBERS\n");
-	col_id = atoi(ft_get_info("Which field would you like to update? Select a number"));
+	ft_print_table(t);
+	col_id = atoi(ft_get_info("Which field would you like to update?"));
 	if ((c_idx = ft_find_col_index(t, col_id)) == -1)
 	{
 		printf("col not found\n");
@@ -65,37 +65,26 @@ void	ft_update_row(t_table *t)
 	char	*row_string;
 
 	row_id = atoi(ft_get_info("Which row ID would you like to update?"));
-	// printf("I have to delete %d  T_T\n", row);
 	if ((r_idx = ft_find_row(row_id, t)) == -1)
 	{
-		printf("Row ID: %d does not exist. Please verify and try again. \n", row_id);
+		printf("This row does not exist. Please verify and try again.\n");
 		return ;
 	}
-	row_string = ft_gen_row(t->columns, r_idx);
-	printf("The record we found is the following.\n%s\n", row_string);
-
-	// NEED TO CHANGE THE OUTPUT OF THE RECORD TO SHOW FIELDS
-
+	printf("We found the following record\n\n");
+	ft_print_selected(t, r_idx, 0);
 	if ((ft_get_info("Update this record? [y/n]")[0]) == 'n')
-	{
-		printf("keep\n");
 		return ;
-	}
 	ft_update_record(t, r_idx);
-	row_string = ft_gen_row(t->columns, r_idx);
-	printf("New record\n%s\n", row_string);
-	// t->row_id[r_idx] = -1;
+	printf("\nUpdated record\n\n");
+	ft_print_selected(t, r_idx, 0);
 }
 
 void	ft_update_handler(char **rec, t_table *t)
 {
-	printf("update handler\n");
-	// update r
 	if (!rec[1])
 		printf("print UPDATE USAGE\n");
-	if (rec[1][0] == 'r')
-	{
-		printf("edit row\n");
+	else if (rec[1][0] == 'r')
 		ft_update_row(t);
-	}
+	else if (rec[1][0] == 'c')
+		printf("update column\n");
 }

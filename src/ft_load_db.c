@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 14:57:38 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 15:31:59 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_load_column(char *header, t_table *t)
 	else
 	{
 		col->type = info[0][0];
-		free(info[0]);
+		// free(info[0]);
 	}
-	col->name = info[1];
+	col->name = strdup(info[1]);
 	col->name_len = strlen(col->name);
 	col->max_len = col->name_len;
 	t->max_size += col->max_len;

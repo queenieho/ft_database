@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 10:23:56 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 14:17:47 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,20 @@ int		ft_array_len(char **args)
 
 void	ft_cleanup(t_table *t)
 {
-	int		idx;
+	int		c_idx;
+	int		r_idx;
 
-	idx = 0;
-	while (idx < COL_SIZE)
+	c_idx = 0;
+	r_idx = 0;
+	while (c_idx < COL_SIZE)
 	{
-		free(t->columns[idx].content_array);
-		idx++;
+		while (r_idx < ROW_SIZE && t->row_id[r_idx] != 0)
+		{
+			free(t->columns[c_idx].content_array[r_idx].data);
+			r_idx++;
+		}
+		free(t->columns[c_idx].content_array);
+		c_idx++;
 	}
 	free(t->columns);
 }
@@ -44,7 +51,7 @@ void	ft_exit(t_table *t)
 {
 	ft_save_handler(t);
 	ft_cleanup(t);
-	exit(1);
+	// exit(1);
 }
 
 int		ft_dbms(char *command, char **rec, t_table *t)
@@ -56,7 +63,10 @@ int		ft_dbms(char *command, char **rec, t_table *t)
 	if (ac == 1 && !strncmp(command, "help", 4))
 		ft_print_help_all();
 	else if (ac == 1 && !strncmp(command, "exit", 4))
+	{
 		ft_exit(t);
+		return (0);
+	}
 	else if (ac == 1 && !strncmp(command, "save", 4))
 		ft_save_handler(t);
 	else if (!strncmp(command, "insert", 6))
@@ -69,5 +79,5 @@ int		ft_dbms(char *command, char **rec, t_table *t)
 		ft_delete_handler(rec, t);
 	else
 		printf("Invalid command. Use \"help\" to see usage.\n");
-	return (0);
+	return (1);
 }

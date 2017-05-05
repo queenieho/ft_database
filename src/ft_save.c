@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 09:26:42 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 15:18:59 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_save_col_header(int fd, t_column col)
 
 	header = ft_gen_header(col, &len);
 	write(fd, header, len);
+	free(header);
 }
 
 char	*ft_init_row(t_content record)
@@ -76,7 +77,7 @@ char	*ft_append_to_row(char *str, t_content record)
 {
 	char	*row;
 
-	row = (char *)malloc(sizeof(char) * (strlen(str) + record.len + 2));
+	row = (char *)malloc(sizeof(char) * (strlen(str) + strlen(record.data) + 2));
 	row = strcpy(row, str);
 	row = strcat(row, record.data);
 	row = strcat(row, ",");
@@ -115,6 +116,7 @@ void	ft_save_rows(int fd, t_table *t)
 			len = strlen(row_string);
 			write(fd, row_string, len);
 			write(fd, "\n", 1);
+			free(row_string);
 		}
 		r_idx++;
 	}

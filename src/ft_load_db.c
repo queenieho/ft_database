@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 09:01:25 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 14:57:38 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ void	ft_load_column(char *header, t_table *t)
 	if (len == 1)
 		col->type = 's';
 	else
+	{
 		col->type = info[0][0];
-	col->name = strdup(info[1]);
+		free(info[0]);
+	}
+	col->name = info[1];
 	col->name_len = strlen(col->name);
 	col->max_len = col->name_len;
 	t->max_size += col->max_len;
@@ -44,6 +47,7 @@ void	ft_get_columns(char *line, t_table *t)
 		ft_load_column(*headers, t);
 		headers++;
 	}
+	free(headers);
 }
 
 void	ft_load_row_data(t_table *t, int r_idx, char *record, int c_idx)
@@ -51,7 +55,7 @@ void	ft_load_row_data(t_table *t, int r_idx, char *record, int c_idx)
 	t_content	*content;
 
 	content = &t->columns[c_idx].content_array[r_idx];
-	content->data = strdup(record);
+	content->data = record;
 	content->len = strlen(content->data);
 	ft_update_maxlen(&t->columns[c_idx], content->len, &t->max_size);
 }

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 23:33:07 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 23:55:49 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ void	ft_update_record(t_table *t, int r_idx)
 	int		c_idx;
 	char	*new_input;
 	int		new_len;
+	char	*field;
 
 	ft_print_table(t);
-	col_id = atoi(ft_get_info("Which field would you like to update?"));
+
+	field = ft_get_info("Which field would you like to update?");
+	
+	// col_id = atoi(ft_get_info("Which field would you like to update?"));
 	if ((c_idx = ft_find_col_index(t, col_id)) == -1)
 	{
 		printf("col not found\n");

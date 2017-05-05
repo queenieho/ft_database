@@ -6,11 +6,13 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 00:29:23 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 01:47:09 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
+
+void		ft_print_sorted(t_table *t)
 
 void		ft_print_selected(t_table *t, int num1, int num2)
 {

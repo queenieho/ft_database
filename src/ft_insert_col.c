@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 15:08:36 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/04 22:31:11 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		ft_empty_col(t_table *t)
 {
-	// printf("finding empty col\n");
 	int		i;
 
 	i = 0;
@@ -25,7 +24,6 @@ int		ft_empty_col(t_table *t)
 
 int		ft_col_id_gen()
 {
-	// printf("gen col id\n");
 	g_col_id += 1;
 	return(g_col_id);
 }
@@ -39,35 +37,32 @@ void	ft_insert_new_data(t_column *col, int r_idx)
 	}
 }
 
-void	ft_insert_column(t_table *t, char type, char *name)
+void	ft_insert_column(t_table *t, int num)
 {
-	printf("inserting column\n");
 	int			idx;
 	t_column	*col;
 	int			r_idx;
+	char		type;
+	char		*col_name;
 
-	idx = ft_empty_col(t);
-	t->col_id[idx] = ft_col_id_gen();
-
-	printf("%d\n", t->col_id[idx]);
-
-	col = &(t->columns[idx]);
-	col->max_len = 0;
-	col->type = type;
-	col->name = name;
-	col->name_len = strlen(col->name);
-	// printf("updating max len?\n");
-	ft_update_maxlen(col, col->name_len, &t->max_size);
-	t->max_size += 3;
-	// printf("inserting rows?\n");
-	if ((r_idx = ft_empty_row(t)) > 0)
-		ft_insert_new_data(col, r_idx - 1);
-	// col->even_odd = col->max_len % 2 == 1 ? 1 : 0;
-	// printf("assigned col: %d.  ID: %d.  Address: %p\n", idx, t->col_id[idx], col);
-	// printf("\ncol has a max len of %d\n\n", col->max_len);
-	// printf("col type: - %c -, col name: %s, name len: %d\n", t->columns[idx].type, t->columns[idx].name, t->columns[idx].name_len);
-	// printf("col inserted?\n");
-
+	while (num)
+	{
+		col_name = ft_get_info("What is the column name?");
+		type = ft_get_datatype();
+		idx = ft_empty_col(t);
+		t->col_id[idx] = ft_col_id_gen();
+		col = &(t->columns[idx]);
+		col->max_len = 0;
+		col->type = type;
+		col->name = name;
+		col->name_len = strlen(col->name);
+		ft_update_maxlen(col, col->name_len, &t->max_size);
+		t->max_size += 3;
+		if ((r_idx = ft_empty_row(t)) > 0)
+			ft_insert_new_data(col, r_idx - 1);
+		num--;
+	}
+	ft_print_header(t);
 }
 
 char	ft_get_datatype()

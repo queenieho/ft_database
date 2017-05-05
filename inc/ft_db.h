@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 23:01:20 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:27:58 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	ft_load_db(t_table *t);
 /*
 ** FT_PRINT_C
 */
+int		ft_search_header(t_table *t, char *find);
 static	int		ft_max_len(t_table *t);
 void	ft_print_row(t_table *t, int row_idx);
 void	ft_print_data(int max_len, char *str);
@@ -144,6 +145,7 @@ void	ft_print_table(t_table *t);
 void	ft_print_handler(char **rec, t_table *t);
 void	ft_print_filtered(t_table *t);
 void	ft_print_selected(t_table *t, int num1, int num2);
+
 /*
 ** FT_SAVE_C
 */

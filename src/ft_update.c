@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 23:55:49 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 01:16:56 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@ void	ft_update_record(t_table *t, int r_idx)
 	int		new_len;
 	char	*field;
 
-	ft_print_table(t);
-
 	field = ft_get_info("Which field would you like to update?");
-	
-	// col_id = atoi(ft_get_info("Which field would you like to update?"));
-	if ((c_idx = ft_find_col_index(t, col_id)) == -1)
+	if ((c_idx = ft_search_header(t, field)) == -1)
 	{
-		printf("col not found\n");
-		return ;
+		if ((ft_get_info("Could not find a matching field. Try another? [y/n]")[0]) == 'n')
+			return ;
+		else
+			ft_update_record(t, r_idx);
 	}
-	printf("col number is %d\n", t->col_id[c_idx]);
-	new_input = ft_get_info("Insert new input:");
-	new_len = strlen(new_input);
-	free(t->columns[c_idx].content_array[r_idx].data);
-	t->columns[c_idx].content_array[r_idx].data = new_input;
-	t->columns[c_idx].content_array[r_idx].len = new_len;
-	ft_update_maxlen(&t->columns[c_idx], new_len, &t->max_size);
+	else
+	{
+		new_input = ft_get_info("Insert new input:");
+		new_len = strlen(new_input);
+		free(t->columns[c_idx].content_array[r_idx].data);
+		t->columns[c_idx].content_array[r_idx].data = new_input;
+		t->columns[c_idx].content_array[r_idx].len = new_len;
+		ft_update_maxlen(&t->columns[c_idx], new_len, &t->max_size);
+	}
 }
 
 void	ft_update_row(t_table *t)
@@ -71,16 +71,49 @@ void	ft_update_row(t_table *t)
 	row_id = atoi(ft_get_info("Which row ID would you like to update?"));
 	if ((r_idx = ft_find_row(row_id, t)) == -1)
 	{
-		printf("This row does not exist. Please verify and try again.\n");
-		return ;
+		if ((ft_get_info("This row does not exist. Try another? [y/n]")[0]) == 'n')
+			return ;
+		else
+			ft_update_row(t);
 	}
-	printf("We found the following record\n\n");
-	ft_print_selected(t, r_idx, 0);
-	if ((ft_get_info("Update this record? [y/n]")[0]) == 'n')
-		return ;
-	ft_update_record(t, r_idx);
-	printf("\nUpdated record\n\n");
-	ft_print_selected(t, r_idx, 0);
+	else
+	{
+		printf("We found the following record\n\n");
+		ft_print_selected(t, r_idx, -1);
+		if ((ft_get_info("Update this record? [y/n]")[0]) == 'y')
+		{
+			ft_update_record(t, r_idx);
+			printf("\nUpdated record\n\n");
+			ft_print_selected(t, r_idx, -1);
+		}
+	}
+}
+
+void	ft_update_column(t_table *t)
+{
+	int		c_idx;
+	char	*new_input;
+	int		new_len;
+	char	*field;
+
+	ft_print_header(t);
+	field = ft_get_info("Which field would you like to update?");
+	if ((c_idx = ft_search_header(t, field)) == -1)
+	{
+		if ((ft_get_info("Could not find a matching field. Try another? [y/n]")[0]) == 'n')
+			return ;
+		else
+			ft_update_column(t);
+	}
+	else
+	{
+		new_input = ft_get_info("Insert new field name:");
+		new_len = strlen(new_input);
+		free(t->columns[c_idx].name);
+		t->columns[c_idx].name = new_input;
+		t->columns[c_idx].name_len = new_len;
+		ft_update_maxlen(&t->columns[c_idx], new_len, &t->max_size);
+	}
 }
 
 void	ft_update_handler(char **rec, t_table *t)
@@ -90,5 +123,5 @@ void	ft_update_handler(char **rec, t_table *t)
 	else if (rec[1][0] == 'r')
 		ft_update_row(t);
 	else if (rec[1][0] == 'c')
-		printf("update column\n");
+		ft_update_column(t);
 }

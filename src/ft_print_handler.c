@@ -6,13 +6,13 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 23:35:19 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 00:41:30 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-static	int	ft_search_header(t_table *t, char *find)
+int		ft_search_header(t_table *t, char *find)
 {
 	t_content	*data;
 	t_column	*col;
@@ -26,7 +26,7 @@ static	int	ft_search_header(t_table *t, char *find)
 		col = &t->columns[col_idx];
 		str = col->name;
 		if (str && t->col_id[col_idx] > 0)
-			if(ft_strcmp(str, find))
+			if(!(ft_strcmp(str, find)))
 				return (col_idx);
 		col_idx++;
 	}
@@ -115,13 +115,13 @@ void			ft_print_handler(char **rec, t_table *t)
 			if (num1 >= 0 && num2 >= 0)
 				ft_print_selected(t, num1, num2);
 			else if (num1 >= 0)
-				ft_print_selected(t, num1, 0);
+				ft_print_selected(t, num1, -1);
 		}
 		else if (rec[2])
 		{
 			num1 = ft_find_row(ft_atoi(rec[2]), t);
 			if (num1 >= 0)
-				ft_print_selected(t, num1, 0);
+				ft_print_selected(t, num1, -1);
 		}
 	}
 	else if (rec[1][0] == 'a')

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
+/*   ft_print_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/04 21:56:24 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 22:29:00 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,21 @@ void	ft_print_header(t_table *t)
 {
 	t_content	*data;
 	t_column	*col;
-	int			col_num;
+	int			col_idx;
 	char		*str;
 	int			len;
 
 	ft_print_line(t);
-	col_num = 0;
+	col_idx = 0;
 	printf("| Key ");
-	while (col_num < g_col_id)
+	while (col_idx < g_col_id)
 	{
 		printf("| ");
-		col = &t->columns[col_num];
+		col = &t->columns[col_idx];
 		str = col->name;
 		if (str && t->col_id[col_idx] > 0)
 			ft_print_data((int)col->max_len, str);
-		col_num++;
+		col_idx++;
 	}
 	printf(" |\n");
 	ft_print_line(t);
@@ -105,7 +105,7 @@ void	ft_print_row(t_table *t, int row_idx)
 	t_column	*col;
 	int			col_idx;
 	char		*str;
-
+	
 	printf("| ");
 	col_idx = 0;
 	printf("%03d ", t->row_id[row_idx]);

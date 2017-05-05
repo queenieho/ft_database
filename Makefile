@@ -6,7 +6,7 @@
 #    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/04 21:58:59 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/04 22:13:28 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT	=	libft/ -lft
 INC		=	./inc/
 FILES	=	ft_db ft_fork ft_insert ft_update ft_delete ft_print_all \
 			ft_save ft_insert_row ft_insert_col	ft_load_db \
-			ft_print_handler
+			ft_print_handler ft_print_s
 
 #			ft_strsplit ft_utils
 

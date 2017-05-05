@@ -6,12 +6,11 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/04 21:57:16 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/04 22:30:19 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
-
 
 static	int	ft_search_header(t_table *t, char *find)
 {
@@ -26,7 +25,7 @@ static	int	ft_search_header(t_table *t, char *find)
 	{
 		col = &t->columns[col_idx];
 		str = col->name;
-		if (str && col_id[col_idx] > 0)
+		if (str && t->col_id[col_idx] > 0)
 			if(ft_strcmp(str, find))
 				return (col_idx);
 		col_idx++;
@@ -102,8 +101,8 @@ void			ft_print_filtered(t_table *t)
 
 void			ft_print_handler(char **rec, t_table *t)
 {
-	int		row_num;
-	int		col_num;
+	int		row_idx;
+	int		col_idx;
 	t_content	*data;
 	t_column	*col;
 	int			max;
@@ -127,13 +126,19 @@ void			ft_print_handler(char **rec, t_table *t)
 		printf("print PRINT USAGE\n");
 	else if (rec[1][0] == 'r')
 	{
-		if ((row_num = ft_atoi(ft_get_info("What row number?")) >= 0))
-			ft_print_row(t, row_num);
+		if ((row_idx = ft_find_row(ft_atoi(ft_get_info("What row number?")), t)) >= 0)
+		{
+			ft_print_header(t);
+			ft_print_row(t, row_idx);
+			ft_print_line(t);
+		}
 	}
 	else if (rec[1][0] == 'a')
 		ft_print_table(t);
 	else if (rec[1][0] == 'c')
 		ft_print_header(t);
-	else if (rec[1][0] == 's')
+	else if (rec[1][0] == 'f')
 		ft_print_filtered(t);
+	else if (rec[1][0] == 's')
+		ft_print_selected(t);
 }

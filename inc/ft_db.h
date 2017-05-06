@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:40:26 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:10:40 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@
 # define ROW_SIZE 500
 # define FILENAME "data"
 # define BACKUP_FILE "data.backup"
+
+# ifndef ERRS
+#  define ERR(a, b) while(1){if(a){return(b);}break;}
+# endif
 
 int		g_col_id;
 int		g_row_id;

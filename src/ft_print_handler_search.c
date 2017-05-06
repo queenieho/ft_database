@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 18:36:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 18:40:50 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:11:12 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 int			ft_search_header(t_table *t, char *find)
 {
-	t_column	*col;
 	int			col_idx;
 	char		*str;
 	int			len;
 	int			i;
+	char		*cpy;
 
 	col_idx = 0;
 	while (col_idx < g_col_id)
 	{
-		col = &t->columns[col_idx];
-		str = col->name;
+		str = t->columns[col_idx].name;
 		i = 0;
-		while (str[i])
+		cpy = ft_strdup(str);
+		while (cpy[i])
 		{
-			str[i] = ft_tolower(str[i]);
+			cpy[i] = ft_tolower(cpy[i]);
 			i++;
 		}
-		if (str && t->col_id[col_idx] > 0)
-			if (!(ft_strcmp(str, find)))
-				return (col_idx);
+		if (cpy && t->col_id[col_idx] > 0)
+			ERR(!(ft_strcmp(cpy, find)), col_idx);
 		col_idx++;
 	}
+	free(cpy);
 	return (-1);
 }
 

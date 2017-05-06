@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 10:56:20 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 17:39:49 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@ int			ft_search_header(t_table *t, char *find)
 	int			col_idx;
 	char		*str;
 	int			len;
+	int			i;
 
 	col_idx = 0;
 	while (col_idx < g_col_id)
 	{
 		col = &t->columns[col_idx];
 		str = col->name;
+		i = 0;
+		while (str[i])
+		{
+			str[i] = ft_tolower(str[i]);
+			i++;
+		}
 		if (str && t->col_id[col_idx] > 0)
 			if (!(ft_strcmp(str, find)))
 				return (col_idx);

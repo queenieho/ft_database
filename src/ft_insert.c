@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_insert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 12:17:29 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 17:37:21 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 char	*ft_get_info(char *ask)
 {
 	char	*ans;
+	int		i;
 
 	printf("\n%s\n", ask);
 	ans = strtok(ft_readline(), "\n");
 	if (!ans)
 		ans = strdup("-");
+	else
+	{
+		i = 0;
+		while (ans[i])
+		{
+			ans[i] = ft_tolower(ans[i]);
+			i++;
+		}
+	}
+	printf("%s\n", ans);
 	return (ans);
 }
 

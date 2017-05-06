@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_db.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 16:27:32 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 17:29:40 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,25 @@ void		ft_print_handler(char **rec, t_table *t);
 ** FT_PRINT_S_C
 */
 void			ft_print_sorted(t_table *t);
-
-void		ft_print_selected(t_table *t, int num1, int num2);
+void			ft_sorter(t_table *t, int col_idx);
+void			ft_gen_sort_array(t_table *t, int num, int **array);
+void			ft_print_sort_table(t_table *t, int *sorted);
+void			ft_print_selected(t_table *t, int num1, int num2);
+void			ft_comp_rows(t_table *t, int col_idx, int **array,
+					int asnd_dsnd);
+void			ft_sort_type_asnd(t_table *t, int col_idx, int r_idx,
+					int **array);
+void			ft_sort_type_dsnd(t_table *t, int col_idx, int r_idx,
+					int **array);
+void			ft_sort_asnd_int(t_table *t, int r_idx, int col_idx,
+					int **array);
+void			ft_sort_asnd_str(t_table *t, int r_idx, int col_idx,
+					int **array);
+void			ft_sort_dsnd_int(t_table *t, int r_idx, int col_idx,
+					int **array);
+void			ft_sort_dsnd_str(t_table *t, int r_idx, int col_idx,
+					int **array);
+char			*ft_comp_cols(t_table *t, int row_id, int col_idx);
 
 /*
 ** FT_SAVE_C

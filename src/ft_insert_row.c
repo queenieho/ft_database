@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:03:34 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:28:17 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 23:35:26 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_insert_row(t_table *t, int num)
 				ft_insert_row_data(&t->columns[c_idx], r_idx, &t->max_size);
 				c_idx++;
 			}
+			printf("%s Row %d inserted.\n\n", SUCCESS, t->row_id[r_idx]);
 			num--;
 		}
 	}

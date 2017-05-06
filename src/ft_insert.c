@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:21:29 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 23:37:34 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,15 @@ void	ft_insert_handler(char **rec, t_table *t)
 		else if (rec[1][0] == 'r')
 			ft_insert_row(t, num);
 	}
+}
+
+int		ft_check_info(t_table *t, char *str)
+{
+	if ((ft_get_info(
+		"Could not find a matching field. Try another? [y/n]")[0]) == 'y')
+	{
+		free(str);
+		ft_update_column(t);
+	}
+	return (0);
 }

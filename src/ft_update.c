@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:35:11 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 23:32:51 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	ft_update_row(t_table *t)
 	row_id = atoi(ft_get_info("Which row ID would you like to update?"));
 	if ((r_idx = ft_find_row(row_id, t)) == -1)
 	{
-		printf("This row does not exist. ");
-		if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
+		if ((ft_get_info(
+			"This row does not exist. Try another? [y/n]")[0]) == 'n')
 			return ;
 		else
 			ft_update_row(t);
@@ -77,25 +77,22 @@ void	ft_update_row(t_table *t)
 	}
 }
 
-void	ft_update_column(t_table *t)
+int		ft_update_column(t_table *t)
 {
 	int		c_idx;
 	char	*new_input;
 	int		new_len;
 	char	*field;
+	char	*cpy;
 
 	ft_print_header(t);
 	field = ft_get_info("Which field would you like to update?");
-	if ((c_idx = ft_search_header(t, field)) == -1)
-	{
-		printf("Could not find a matching field. \n");
-		if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
-			return ;
-		else
-			ft_update_column(t);
-	}
+	cpy = ft_user_input_check(field);
+	if ((c_idx = ft_search_header(t, cpy)) == -1)
+		ft_check_info(t, cpy);
 	else
 	{
+		free(cpy);
 		new_input = ft_get_info("Insert new field name:");
 		new_len = strlen(new_input);
 		free(t->columns[c_idx].name);
@@ -103,6 +100,7 @@ void	ft_update_column(t_table *t)
 		t->columns[c_idx].name_len = new_len;
 		ft_update_maxlen(&t->columns[c_idx], new_len, &t->max_size);
 	}
+	return (0);
 }
 
 void	ft_update_handler(char **rec, t_table *t)

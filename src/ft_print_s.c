@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 19:39:48 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 23:06:55 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void			ft_sorter(t_table *t, int col_idx)
 	sort_exst = (int *)malloc(sizeof(int) * (num_rows + 1));
 	bzero(sort_exst, sizeof(int) * (num_rows + 1));
 	if ((str = ft_get_info(
-		"If you want descending order type (1) otherwise press enter?")))
-		if (ft_atoi(str) == 1)
+		"How would you like to sort this?\n [1] ascending\n [2] descending")))
+		if (ft_atoi(str) == 2)
 			asnd_dsnd = 1;
 	ft_gen_sort_array(t, num_rows, &sort_exst);
 	ft_comp_rows(t, col_idx, &sort_exst, asnd_dsnd);

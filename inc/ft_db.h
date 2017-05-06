@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:30:19 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 23:35:45 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define W "\033[0m"
 
 # define DASH "\033[31;1m=>\033[0m"
+# define SUCCESS "\033[32;1m(＾▽ ＾) \033[0m"
 
 /*
 ** DEFINE DATA STRUCTS
@@ -46,6 +47,7 @@
 # ifndef ERRS
 #  define ERR(a, b) while(1){if(a){return(b);}break;}
 #  define ERR1(a, b, c) while(1){if(a){b;return(c);}break;}
+#  define ERR2(a, b, c, d) while(1){if(a){b;c;return(d);}break;}
 # endif
 
 int		g_col_id;
@@ -206,7 +208,8 @@ int				ft_find_col_index(t_table *t, int col_id);
 void			ft_update_maxlen(t_column *col, int new_len, int *max_size);
 void			ft_update_record(t_table *t, int r_idx);
 void			ft_update_row(t_table *t);
-void			ft_update_column(t_table *t);
+int				ft_update_column(t_table *t);
 void			ft_update_handler(char **rec, t_table *t);
+int				ft_check_info(t_table *t, char *str);
 
 #endif

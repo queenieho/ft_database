@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:28:24 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 23:00:12 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		ft_insert_column(t_table *t, int num)
 			ft_insert_new_data(col, r_idx - 1);
 		num--;
 	}
+	printf("%s Column %s%d%s inserted.\n\n", SUCCESS, G, t->col_id[idx], W);
 	return (0);
 }
 
@@ -71,7 +72,7 @@ char	ft_get_datatype(void)
 {
 	char	type;
 
-	printf("What kind of data will this store?\n");
+	printf("\nWhat kind of data will this store?\n");
 	printf(" [s] string\n");
 	printf(" [i] integer\n");
 	type = ft_readline()[0];

@@ -1,5 +1,5 @@
 s:Name,i:Age,s:Location,i:ZIP,s:Color,s:Vacation,s:Birthday,
-Queenie,29,Cali,-,-,-,-,
+Queenie,29,-,-,-,-,-,
 Macy Ho,34,Miami,-,-,-,-,
 Neah Ho,5,Toronto,29374,Pink,-,-,
 Pito Ho,14,Toronto,28390,Blue,-,-,

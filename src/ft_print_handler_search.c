@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 18:36:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 19:37:05 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:43:21 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_search_header(t_table *t, char *find)
 			i++;
 		}
 		if (cpy && t->col_id[col_idx] > 0)
-			ERR1(!(ft_strcmp(cpy, find)), free(cpy),col_idx);
+			ERR1(!(ft_strcmp(cpy, find)), free(cpy), col_idx);
 		col_idx++;
 	}
 	free(cpy);

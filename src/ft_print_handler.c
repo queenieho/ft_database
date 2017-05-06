@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 19:40:59 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:43:34 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		ft_print_filtered(t_table *t)
 	{
 		cpy = ft_user_input_check(str);
 		col_idx = ft_search_header(t, cpy);
-		free (cpy);
+		free(cpy);
 		if (col_idx >= 0)
 		{
 			str = ft_get_info("What would you like to filter for?");

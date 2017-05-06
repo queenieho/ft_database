@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_update.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:15 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 10:03:24 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 18:35:11 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
-
-int		ft_find_col_index(t_table *t, int col_id)
-{
-	int c_idx;
-
-	c_idx = 0;
-	while (c_idx < COL_SIZE && t->col_id[c_idx])
-	{
-		if (t->col_id[c_idx] == col_id)
-			return (c_idx);
-		c_idx++;
-	}
-	return (-1);
-}
 
 void	ft_update_maxlen(t_column *col, int new_len, int *max_size)
 {

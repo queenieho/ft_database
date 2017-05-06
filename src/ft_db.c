@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_db.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:10 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 14:17:47 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 18:25:53 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_exit(t_table *t)
 {
 	ft_save_handler(t);
 	ft_cleanup(t);
-	// exit(1);
 }
 
 int		ft_dbms(char *command, char **rec, t_table *t)

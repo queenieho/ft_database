@@ -6,13 +6,13 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 17:15:00 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 18:28:43 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-void	ft_print_sort_table(t_table *t, int *sorted)
+void			ft_print_sort_table(t_table *t, int *sorted)
 {
 	int			row_idx;
 	int			real_idx;
@@ -30,7 +30,7 @@ void	ft_print_sort_table(t_table *t, int *sorted)
 	ft_print_line(t);
 }
 
-void		ft_gen_sort_array(t_table *t, int num, int **array)
+void			ft_gen_sort_array(t_table *t, int num, int **array)
 {
 	int			r_idx;
 	int			array_idx;

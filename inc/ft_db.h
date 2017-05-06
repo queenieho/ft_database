@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:22:38 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 18:40:26 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ void			ft_print_filtered(t_table *t);
 int				ft_find_last_row(t_table *t, int last_row);
 void			ft_print_row_handler(char **rec, t_table *t);
 void			ft_print_handler(char **rec, t_table *t);
+int				ft_search_col(t_table *t, int row_idx, int col_idx, char *find);
+int				ft_search_row(t_table *t, char *str, int col_idx);
 
 /*
 ** FT_PRINT_S_C

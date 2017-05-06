@@ -6,7 +6,7 @@
 #    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/05 17:31:05 by apineda          ###   ########.fr        #
+#    Updated: 2017/05/05 18:37:46 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ INC		=	./inc/
 FILES	=	main ft_db ft_insert ft_update ft_delete ft_print_all \
 			ft_save ft_insert_row ft_insert_col	ft_load_db \
 			ft_print_handler ft_print_s ft_help ft_print_s_sort \
-			ft_print_s_sort_ascending ft_print_s_sort_descending
+			ft_print_s_sort_ascending ft_print_s_sort_descending \
+			ft_save_extra ft_print_handler_search
 
 T_FILES	=	ft_fork ft_strsplit	ft_test	\
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
+#    By: apineda <apineda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:21:43 by qho               #+#    #+#              #
-#    Updated: 2017/05/05 13:27:00 by qho              ###   ########.fr        #
+#    Updated: 2017/05/05 18:37:46 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ LIBFT	=	libft/ -lft
 INC		=	./inc/
 FILES	=	main ft_db ft_insert ft_update ft_delete ft_print_all \
 			ft_save ft_insert_row ft_insert_col	ft_load_db \
-			ft_print_handler ft_print_s ft_help
+			ft_print_handler ft_print_s ft_help ft_print_s_sort \
+			ft_print_s_sort_ascending ft_print_s_sort_descending \
+			ft_save_extra ft_print_handler_search
 
 T_FILES	=	ft_fork ft_strsplit	ft_test	\
 

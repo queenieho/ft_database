@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_help.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 10:00:24 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 10:05:40 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 18:26:13 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
-
 
 void	ft_print_help_all(void)
 {
@@ -36,7 +35,6 @@ void	ft_print_help_print(void)
 	printf(" print c\n");
 	printf(" print f\n");
 	printf(" print sorted??\n");
-
 }
 
 void	ft_print_help_update(void)

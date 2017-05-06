@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 15:01:20 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 18:38:58 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
+
+int		ft_find_col_index(t_table *t, int col_id)
+{
+	int c_idx;
+
+	c_idx = 0;
+	while (c_idx < COL_SIZE && t->col_id[c_idx])
+	{
+		if (t->col_id[c_idx] == col_id)
+			return (c_idx);
+		c_idx++;
+	}
+	return (-1);
+}
 
 char	*ft_readline(void)
 {
@@ -54,16 +68,6 @@ void	ft_print_intro(void)
 	printf("%s*     Welcome to My_DBMS, our 42 ft_db!     *%s\n", R, W);
 	printf("%s*                                           *%s\n", R, W);
 	printf("%s*********************************************%s\n", R, W);
-	// printf("Welcome to\n");
-	// printf("    (`-')            _(`-')      (`-')    (`-')   (`-')    \n");
-	// printf("    (OO )_          ( (OO )    __( OO)    (OO )_  ( OO)_   \n");
-	// printf(",--./  ,-.),--.   ,-.\\    .'_ '-'---.\\,--./  ,-.)(_)--\\_)  \n");
-	// printf("|   `.'   (`-')'.'  /'`'-..__)| .-. (/|   `.'   |/    _ /  \n");
-	// printf("|  |'.'|  (OO \\    / |  |  ' || '-' `.)  |'.'|  |\\_..`--.  \n");
-	// printf("|  |   |  ||  /   /) |  |  / :| /`'.  |  |   |  |.-._)   \\ \n");
-	// printf("|  |   |  |`-/   /`  |  '-'  /| '--'  /  |   |  |\\       / \n");
-	// printf("`--'   `--'  `--'    `------' `------'`--'   `--' `-----'  \n");
-	// printf("Our 42 ft_db\n");
 	printf("Here's some quick instructions: \n");
 	printf(" help\n");
 	printf(" insert\n");

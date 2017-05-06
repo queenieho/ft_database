@@ -3,87 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_save.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:37:33 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 16:27:00 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 18:34:56 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
-
-int		ft_open_file(char *filename)
-{
-	int		fd;
-
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (fd == -1)
-		perror("failed to open file");
-	return (fd);
-}
-
-void	ft_close_file(int fd)
-{
-	close(fd);
-}
-
-void	ft_insert_type(char **header, char type)
-{
-	char	*tmp;
-
-	tmp = *header;
-	*tmp = type;
-	tmp++;
-	*tmp = ':';
-	tmp++;
-	*tmp = '\0';
-}
-
-char	*ft_gen_header(t_column col, int *len)
-{
-	char	*header;
-	int		i;
-
-	i = 2;
-	*len = col.name_len + 3;
-	header = (char *)malloc(sizeof(char) * (*len + 1));
-	ft_insert_type(&header, col.type);
-	header = strcat(header, col.name);
-	header = strcat(header, ",");
-	return (header);
-}
-
-void	ft_save_col_header(int fd, t_column col)
-{
-	char	*header;
-	int		len;
-
-	header = ft_gen_header(col, &len);
-	write(fd, header, len);
-	free(header);
-}
-
-char	*ft_init_row(t_content record)
-{
-	char	*row;
-
-	row = (char *)malloc(sizeof(char) * (record.len + 2));
-	row = strcpy(row, record.data);
-	row = strcat(row, ",");
-	return (row);
-}
-
-char	*ft_append_to_row(char *str, t_content record)
-{
-	char	*row;
-
-	row = (char *)malloc(sizeof(char) * (strlen(str) + strlen(record.data) + 2));
-	row = strcpy(row, str);
-	row = strcat(row, record.data);
-	row = strcat(row, ",");
-	free(str);
-	return (row);
-}
 
 char	*ft_gen_row(t_column *col, int r_idx, t_table *t)
 {
@@ -121,6 +48,30 @@ void	ft_save_rows(int fd, t_table *t)
 		}
 		r_idx++;
 	}
+}
+
+char	*ft_gen_header(t_column col, int *len)
+{
+	char	*header;
+	int		i;
+
+	i = 2;
+	*len = col.name_len + 3;
+	header = (char *)malloc(sizeof(char) * (*len + 1));
+	ft_insert_type(&header, col.type);
+	header = strcat(header, col.name);
+	header = strcat(header, ",");
+	return (header);
+}
+
+void	ft_save_col_header(int fd, t_column col)
+{
+	char	*header;
+	int		len;
+
+	header = ft_gen_header(col, &len);
+	write(fd, header, len);
+	free(header);
 }
 
 void	ft_save_handler(t_table *t)

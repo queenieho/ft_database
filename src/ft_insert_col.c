@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_insert_col.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 23:04:40 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:03:10 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 20:28:24 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_insert_new_data(t_column *col, int r_idx)
 	}
 }
 
-void	ft_insert_column(t_table *t, int num)
+int		ft_insert_column(t_table *t, int num)
 {
 	int			idx;
 	t_column	*col;
@@ -49,16 +49,12 @@ void	ft_insert_column(t_table *t, int num)
 
 	while (num)
 	{
-		if ((idx = ft_empty_col(t)) == -1)
-		{
-			ft_awkward_moment("No more room for columns. Sorry!");
-			return ;
-		}
+		ERR1((idx = ft_empty_col(t)) == -1,
+			ft_awk_moment("No more room for columns. Sorry!"), 0);
 		name = ft_get_info("\nWhat is the column name?");
 		type = ft_get_datatype();
 		t->col_id[idx] = ft_col_id_gen();
 		col = &(t->columns[idx]);
-		// col->max_len = 0;
 		col->type = type;
 		col->name = name;
 		col->name_len = strlen(col->name);
@@ -68,6 +64,7 @@ void	ft_insert_column(t_table *t, int num)
 			ft_insert_new_data(col, r_idx - 1);
 		num--;
 	}
+	return (0);
 }
 
 char	ft_get_datatype(void)

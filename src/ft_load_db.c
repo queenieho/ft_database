@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_db.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:03:46 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 20:26:55 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,10 @@ void	ft_get_columns(char *line, t_table *t)
 	int		c_num;
 	char	*tmp;
 
-	// c_num = ft_get_col_num(line);
-	if ((c_num = ft_get_col_num(line))> COL_SIZE)
+	if ((c_num = ft_get_col_num(line)) > COL_SIZE)
 	{
 		c_num = COL_SIZE;
-		ft_awkward_moment("Reached max column limit, might have missed some data.");
+		ft_awk_moment("Reached max column limit, data might be missing.");
 	}
 	while (c_num)
 	{

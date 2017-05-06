@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_insert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:12:45 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 20:21:29 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-void	ft_awkward_moment(char *str)
+void	ft_awk_moment(char *str)
 {
 	printf("%s [!] %s [!]%s\n", R, str, W);
 }

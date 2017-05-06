@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_db.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:12:48 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 20:30:19 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 /*
 ** DEFINE DATA STRUCTS
 */
-# define COL_SIZE 5
-# define ROW_SIZE 5
+# define COL_SIZE 1000
+# define ROW_SIZE 100000
 # define FILENAME "data"
 # define BACKUP_FILE "data.backup"
 
@@ -109,7 +109,7 @@ void			ft_print_intro(void);
 /*
 ** FT_INSERT_C
 */
-void			ft_awkward_moment(char *str);
+void			ft_awk_moment(char *str);
 char			*ft_get_info(char *ask);
 void			ft_insert_handler(char **rec, t_table *t);
 
@@ -119,7 +119,7 @@ void			ft_insert_handler(char **rec, t_table *t);
 int				ft_empty_col(t_table *t);
 int				ft_col_id_gen(void);
 void			ft_insert_new_data(t_column *col, int r_idx);
-void			ft_insert_column(t_table *t, int num);
+int				ft_insert_column(t_table *t, int num);
 char			ft_get_datatype(void);
 
 /*
@@ -138,7 +138,7 @@ void			ft_get_columns(char *line, t_table *t);
 void			ft_load_row_data(t_table *t, int r_idx, char *record,
 									int c_idx);
 int				ft_load_row(char *line, t_table *t);
-void			ft_load_db(t_table *t);
+int				ft_load_db(t_table *t);
 
 /*
 ** FT_PRINT_ALL_C

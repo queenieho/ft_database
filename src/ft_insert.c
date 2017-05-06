@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:57:40 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:23:40 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,11 @@
 char	*ft_get_info(char *ask)
 {
 	char	*ans;
-	int		i;
 
 	printf("\n%s\n", ask);
 	ans = strtok(ft_readline(), "\n");
 	if (!ans)
 		ans = strdup("-");
-	else
-	{
-		i = 0;
-		while (ans[i])
-		{
-			ans[i] = ft_tolower(ans[i]);
-			i++;
-		}
-	}
 	return (ans);
 }
 

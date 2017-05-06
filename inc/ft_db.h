@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 13:25:53 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 19:10:40 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:30:16 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 
 # ifndef ERRS
 #  define ERR(a, b) while(1){if(a){return(b);}break;}
+#  define ERR1(a, b, c) while(1){if(a){b;return(c);}break;}
 # endif
 
 int		g_col_id;
@@ -181,6 +182,7 @@ void			ft_sort_dsnd_int(t_table *t, int r_idx, int col_idx,
 void			ft_sort_dsnd_str(t_table *t, int r_idx, int col_idx,
 						int **array);
 char			*ft_comp_cols(t_table *t, int row_id, int col_idx);
+char			*ft_user_input_check(char *str);
 
 /*
 ** FT_SAVE_C

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 20:10:45 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 20:12:45 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,11 @@ void	ft_awkward_moment(char *str)
 char	*ft_get_info(char *ask)
 {
 	char	*ans;
-	int		i;
 
 	printf("\n%s\n", ask);
 	ans = strtok(ft_readline(), "\n");
 	if (!ans)
 		ans = strdup("-");
-	else
-	{
-		i = 0;
-		while (ans[i])
-		{
-			ans[i] = ft_tolower(ans[i]);
-			i++;
-		}
-	}
 	return (ans);
 }
 

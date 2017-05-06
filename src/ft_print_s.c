@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:01:15 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 18:28:43 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:39:48 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,18 @@ void			ft_sorter(t_table *t, int col_idx)
 void			ft_print_sorted(t_table *t)
 {
 	char	*str;
+	char	*cpy;
 	int		col_idx;
 
 	ft_print_header(t);
 	str = ft_get_info("Which field would you like to sort by?");
 	if (str)
 	{
-		if ((col_idx = ft_search_header(t, str)) == -1)
+		cpy = ft_user_input_check(str);
+		if ((col_idx = ft_search_header(t, cpy)) == -1)
 		{
 			printf("Could not find a matching field. \n");
+			free(cpy);
 			if ((ft_get_info("Try another? [y/n]")[0]) == 'n')
 				return ;
 			else

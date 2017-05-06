@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 18:36:43 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 19:11:12 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:43:21 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_search_header(t_table *t, char *find)
 			i++;
 		}
 		if (cpy && t->col_id[col_idx] > 0)
-			ERR(!(ft_strcmp(cpy, find)), col_idx);
+			ERR1(!(ft_strcmp(cpy, find)), free(cpy), col_idx);
 		col_idx++;
 	}
 	free(cpy);
@@ -44,16 +44,19 @@ int			ft_search_col(t_table *t, int row_idx, int col_idx, char *find)
 	t_content	*data;
 	t_column	*col;
 	char		*str;
+	char		*cpy;
 	int			ret;
 
 	ret = 0;
 	col = &t->columns[col_idx];
 	data = &col->content_array[row_idx];
 	str = data->data;
-	if (ft_strstr(str, find))
+	cpy = ft_user_input_check(str);
+	if (ft_strstr(cpy, find))
 	{
 		ret = 1;
 	}
+	free(cpy);
 	return (ret);
 }
 

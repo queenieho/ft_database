@@ -6,29 +6,49 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:07:30 by apineda           #+#    #+#             */
-/*   Updated: 2017/05/05 18:54:04 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:43:34 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
+char		*ft_user_input_check(char *str)
+{
+	int		i;
+	char	*cpy;
+
+	i = 0;
+	cpy = ft_strdup(str);
+	while (cpy[i])
+	{
+		cpy[i] = ft_tolower(cpy[i]);
+		i++;
+	}
+	return (cpy);
+}
+
 void		ft_print_filtered(t_table *t)
 {
 	char	*str;
 	int		col_idx;
+	char	*cpy;
 
 	ft_print_header(t);
 	str = ft_get_info("What column would you like to filter");
 	if (str)
 	{
-		col_idx = ft_search_header(t, str);
+		cpy = ft_user_input_check(str);
+		col_idx = ft_search_header(t, cpy);
+		free(cpy);
 		if (col_idx >= 0)
 		{
 			str = ft_get_info("What would you like to filter for?");
 			if (str)
 			{
-				if (ft_search_row(t, str, col_idx) == -1)
+				cpy = ft_user_input_check(str);
+				if (ft_search_row(t, ft_user_input_check(str), col_idx) == -1)
 					printf("Search of %s was not found.\n", str);
+				free(cpy);
 			}
 		}
 	}
@@ -75,8 +95,5 @@ void		ft_print_handler(char **rec, t_table *t)
 	else if (rec[1][0] == 'f')
 		ft_print_filtered(t);
 	else if (rec[1][0] == 's')
-	{
-		printf("print sorted\n");
 		ft_print_sorted(t);
-	}
 }

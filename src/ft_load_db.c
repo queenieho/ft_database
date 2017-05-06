@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_db.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:02:16 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:50:50 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 20:03:46 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,12 @@ void	ft_get_columns(char *line, t_table *t)
 	int		c_num;
 	char	*tmp;
 
-	c_num = ft_get_col_num(line);
+	// c_num = ft_get_col_num(line);
+	if ((c_num = ft_get_col_num(line))> COL_SIZE)
+	{
+		c_num = COL_SIZE;
+		ft_awkward_moment("Reached max column limit, might have missed some data.");
+	}
 	while (c_num)
 	{
 		if ((tmp = strchr(line, ',')))
@@ -94,7 +99,7 @@ void	ft_load_row_data(t_table *t, int r_idx, char *record, int c_idx)
 	ft_update_maxlen(&t->columns[c_idx], content->len, &t->max_size);
 }
 
-void	ft_load_row(char *line, t_table *t)
+int		ft_load_row(char *line, t_table *t)
 {
 	char	*record;
 	int		r_idx;
@@ -102,7 +107,8 @@ void	ft_load_row(char *line, t_table *t)
 	char	*tmp;
 
 	c_idx = 0;
-	r_idx = ft_empty_row(t);
+	if ((r_idx = ft_empty_row(t)) == -1)
+		return (-1);
 	t->row_id[r_idx] = ft_row_id_gen();
 	while (c_idx < COL_SIZE && t->col_id[c_idx])
 	{
@@ -119,4 +125,5 @@ void	ft_load_row(char *line, t_table *t)
 		line = tmp;
 		c_idx++;
 	}
+	return (0);
 }

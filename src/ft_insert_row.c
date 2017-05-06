@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:03:34 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 11:06:06 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/05 20:07:09 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		ft_empty_row(t_table *t)
 	idx = 0;
 	while (idx < ROW_SIZE && t->row_id[idx] != 0)
 		idx++;
+	if (idx >= ROW_SIZE)
+		return (-1);
 	return (idx);
 }
 
@@ -50,7 +52,11 @@ void	ft_insert_row(t_table *t, int num)
 		while (num)
 		{
 			c_idx = 0;
-			r_idx = ft_empty_row(t);
+			if ((r_idx = ft_empty_row(t)) == -1)
+			{
+				ft_awkward_moment("No more room for rows. Sorry!");
+				return ;
+			}
 			t->row_id[r_idx] = ft_row_id_gen();
 			while (c_idx < COL_SIZE && t->col_id[c_idx])
 			{

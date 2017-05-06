@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_insert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:35:29 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:57:40 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 20:10:45 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
+
+void	ft_awkward_moment(char *str)
+{
+	printf("%s [!] %s [!]%s\n", R, str, W);
+}
 
 char	*ft_get_info(char *ask)
 {

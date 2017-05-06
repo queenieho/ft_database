@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:54:38 by qho               #+#    #+#             */
-/*   Updated: 2017/05/05 18:38:58 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 20:08:34 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_print_intro(void)
 	printf(" update\n");
 	printf(" delete\n");
 	printf(" save\n");
-	printf(" exit\n");
+	printf(" exit\n\n");
 }
 
 int		main(void)
@@ -92,8 +92,8 @@ int		main(void)
 	g_col_id = 0;
 	g_row_id = 0;
 	ft_init_table(&table);
-	ft_load_db(&table);
 	ft_print_intro();
+	ft_load_db(&table);
 	while (status)
 	{
 		printf("\n%s My_DBMS %s- %s", DASH, R, W);
